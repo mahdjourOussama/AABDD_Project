@@ -40,7 +40,7 @@ public  class Sql {
      * 
      *
      */
-    public static void InsertToSellingList(String IDProduct, String IDFacture,
+    public static void InsertToProduit(String IDProduct, String IDFacture,
             String Qte ,String SellingPrice,String BuyingPrice,String Position) {
 
         String sql = "INSERT INTO `sellinglist`(`IDProduct`, `IDSellingFacture`,"
@@ -214,8 +214,8 @@ public static DefaultListModel<String []> SearchForRecepice (String ConfigID){
 }
 //============================//END OF THE Methode//============================
 
-public static void test(){
-    
+public static void test(String username,String password){
+     
 }
 
 //============================//START OF THE Methode//==========================
