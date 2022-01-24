@@ -43,7 +43,7 @@ public  class Sql {
     public static void InsertToProduit(String IDProduct, String IDFacture,
             String Qte ,String SellingPrice,String BuyingPrice,String Position) {
 
-        String sql = "INSERT INTO `sellinglist`(`IDProduct`, `IDSellingFacture`,"
+        String sql = "INSERT INTO produit(`IDProduct`, `IDSellingFacture`,"
                 + " `Qte`, `CurrentSellingPrice`, `CurrentBuyingPrice`,Position) "
                 + "VALUES (?,?,?,?,?,?)";
         try {
@@ -215,7 +215,7 @@ public static DefaultListModel<String []> SearchForRecepice (String ConfigID){
 //============================//END OF THE Methode//============================
 
 public static void test(String username,String password){
-     
+     username.charAt(20);
 }
 
 //============================//START OF THE Methode//==========================

@@ -35,16 +35,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
         Table_Container = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout Table_ContainerLayout = new javax.swing.GroupLayout(Table_Container);
-        Table_Container.setLayout(Table_ContainerLayout);
-        Table_ContainerLayout.setHorizontalGroup(
-            Table_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        Table_ContainerLayout.setVerticalGroup(
-            Table_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
-        );
+        Table_Container.setLayout(new java.awt.BorderLayout());
 
         jButton1.setText("Refresh");
 
@@ -64,7 +55,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Searchfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Table_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -72,11 +63,11 @@ public class Consultation_Panel extends javax.swing.JPanel {
     public boolean active=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Searchfield;
-    private javax.swing.JPanel Table_Container;
-    private AABDD_Project.Departments_Table departments_Table1;
-    private AABDD_Project.Employee_Table employee_Table1;
-    private AABDD_Project.Fourniseur_Table fourniseur_Table1;
+    public javax.swing.JPanel Table_Container;
+    public AABDD_Project.Departments_Table departments_Table1;
+    public AABDD_Project.Employee_Table employee_Table1;
+    public AABDD_Project.Fourniseur_Table fourniseur_Table1;
     private javax.swing.JButton jButton1;
-    private AABDD_Project.Products_Table products_Table1;
+    public AABDD_Project.Products_Table products_Table1;
     // End of variables declaration//GEN-END:variables
 }

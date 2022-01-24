@@ -33,8 +33,20 @@ public class MainFrame extends javax.swing.JFrame {
 
         consultation_Panel1 = new AABDD_Project.Consultation_Panel();
         action_Panel1 = new AABDD_Project.Action_Panel();
+        Menu_user1 = new javax.swing.JPanel();
         Container = new javax.swing.JPanel();
         logIn_Panel2 = new AABDD_Project.LogIn_Panel();
+
+        javax.swing.GroupLayout Menu_user1Layout = new javax.swing.GroupLayout(Menu_user1);
+        Menu_user1.setLayout(Menu_user1Layout);
+        Menu_user1Layout.setHorizontalGroup(
+            Menu_user1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        Menu_user1Layout.setVerticalGroup(
+            Menu_user1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 400));
@@ -50,7 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
         );
 
         pack();
@@ -93,9 +105,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
     boolean books_menu_on=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Container;
-    private AABDD_Project.Action_Panel action_Panel1;
-    private AABDD_Project.Consultation_Panel consultation_Panel1;
-    private AABDD_Project.LogIn_Panel logIn_Panel2;
+    public javax.swing.JPanel Container;
+    public javax.swing.JPanel Menu_user1;
+    public AABDD_Project.Action_Panel action_Panel1;
+    public AABDD_Project.Consultation_Panel consultation_Panel1;
+    public AABDD_Project.LogIn_Panel logIn_Panel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,16 +32,26 @@ public class Fourniseur_Table extends javax.swing.JPanel {
 
         Employee_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "code ", "first name", "famil name", "Num tel"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(Employee_Table);
+        if (Employee_Table.getColumnModel().getColumnCount() > 0) {
+            Employee_Table.getColumnModel().getColumn(0).setResizable(false);
+            Employee_Table.getColumnModel().getColumn(2).setResizable(false);
+            Employee_Table.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,7 +67,7 @@ public class Fourniseur_Table extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Employee_Table;
+    public javax.swing.JTable Employee_Table;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

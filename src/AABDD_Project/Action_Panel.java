@@ -27,13 +27,13 @@ public class Action_Panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        consultation_Panel1 = new AABDD_Project.Consultation_Panel();
         ADD = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
         Restore = new javax.swing.JButton();
         Deleted_Checkbox = new javax.swing.JCheckBox();
         Consultation_Container = new javax.swing.JPanel();
-        consultation_Panel1 = new AABDD_Project.Consultation_Panel();
 
         ADD.setText("ADD");
 
@@ -51,26 +51,7 @@ public class Action_Panel extends javax.swing.JPanel {
         Deleted_Checkbox.setText("Deleted");
         Deleted_Checkbox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout Consultation_ContainerLayout = new javax.swing.GroupLayout(Consultation_Container);
-        Consultation_Container.setLayout(Consultation_ContainerLayout);
-        Consultation_ContainerLayout.setHorizontalGroup(
-            Consultation_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
-            .addGroup(Consultation_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Consultation_ContainerLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(consultation_Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        Consultation_ContainerLayout.setVerticalGroup(
-            Consultation_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(Consultation_ContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(Consultation_ContainerLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(consultation_Panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        Consultation_Container.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -94,7 +75,7 @@ public class Action_Panel extends javax.swing.JPanel {
                 .addComponent(Update)
                 .addGap(18, 18, 18)
                 .addComponent(Delete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(Deleted_Checkbox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Restore))
@@ -109,11 +90,11 @@ public class Action_Panel extends javax.swing.JPanel {
     public boolean active=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADD;
-    private javax.swing.JPanel Consultation_Container;
+    public javax.swing.JPanel Consultation_Container;
     private javax.swing.JButton Delete;
     private javax.swing.JCheckBox Deleted_Checkbox;
     private javax.swing.JButton Restore;
     private javax.swing.JButton Update;
-    private AABDD_Project.Consultation_Panel consultation_Panel1;
+    public AABDD_Project.Consultation_Panel consultation_Panel1;
     // End of variables declaration//GEN-END:variables
 }

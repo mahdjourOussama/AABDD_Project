@@ -32,13 +32,10 @@ public class Departments_Table extends javax.swing.JPanel {
 
         Employee_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Code", "intitule", "chef  name", "chef familyname"
             }
         ));
         jScrollPane2.setViewportView(Employee_Table);
@@ -57,7 +54,7 @@ public class Departments_Table extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Employee_Table;
+    public javax.swing.JTable Employee_Table;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
