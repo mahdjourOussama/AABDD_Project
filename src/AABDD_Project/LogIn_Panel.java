@@ -98,7 +98,7 @@ public class LogIn_Panel extends javax.swing.JPanel {
     private void LogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInButtonActionPerformed
         username=UsernameField.getText();
         password=PasswordField.getText();
-        int priv =Sql.test_user(username, password);
+        int priv =Sql.test_user_priv(username, password);
         if(priv==1){
             MainFrame.Container.removeAll();
             MainFrame.Container.repaint();

@@ -9,12 +9,12 @@ package AABDD_Project;
  *
  * @author mahdj
  */
-public class Sortie_Table extends javax.swing.JPanel {
+public class livraison_Table extends javax.swing.JPanel {
 
     /**
      * Creates new form Departments_Panel
      */
-    public Sortie_Table() {
+    public livraison_Table() {
         initComponents();
     }
 
@@ -28,12 +28,12 @@ public class Sortie_Table extends javax.swing.JPanel {
     private void initComponents() {
 
         Employe_table = new javax.swing.JScrollPane();
-        Sortie_Table = new javax.swing.JTable();
+        Laivraison_Table = new javax.swing.JTable();
         Detailed = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Detailed_table = new javax.swing.JTable();
 
-        Sortie_Table.setModel(new javax.swing.table.DefaultTableModel(
+        Laivraison_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -49,12 +49,12 @@ public class Sortie_Table extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        Employe_table.setViewportView(Sortie_Table);
-        if (Sortie_Table.getColumnModel().getColumnCount() > 0) {
-            Sortie_Table.getColumnModel().getColumn(0).setResizable(false);
-            Sortie_Table.getColumnModel().getColumn(1).setResizable(false);
-            Sortie_Table.getColumnModel().getColumn(2).setResizable(false);
-            Sortie_Table.getColumnModel().getColumn(3).setResizable(false);
+        Employe_table.setViewportView(Laivraison_Table);
+        if (Laivraison_Table.getColumnModel().getColumnCount() > 0) {
+            Laivraison_Table.getColumnModel().getColumn(0).setResizable(false);
+            Laivraison_Table.getColumnModel().getColumn(1).setResizable(false);
+            Laivraison_Table.getColumnModel().getColumn(2).setResizable(false);
+            Laivraison_Table.getColumnModel().getColumn(3).setResizable(false);
         }
 
         Detailed.setText("Detaile");
@@ -107,7 +107,7 @@ public class Sortie_Table extends javax.swing.JPanel {
     private javax.swing.JButton Detailed;
     private javax.swing.JTable Detailed_table;
     private javax.swing.JScrollPane Employe_table;
-    public javax.swing.JTable Sortie_Table;
+    public javax.swing.JTable Laivraison_Table;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

@@ -54,7 +54,7 @@
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Table_Container" max="32767" attributes="0"/>
+              <Component id="Table_Container" pref="186" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
