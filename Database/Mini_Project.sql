@@ -1,3 +1,4 @@
+/*--creating database--*/
 create table Département (
     Code_dep int not null , 
     Intitule_dep varchar (50) not null, 
@@ -84,8 +85,20 @@ create table RENFERMER (
     Primary key (Num_bliv,Code_pro),
     Foreign key (Num_bliv) REFERENCES Bon_livraison(Num_bliv) ON DELETE CASCADE,
     Foreign key (Code_Pro) REFERENCES Produit(Code_pro) ON DELETE CASCADE);
-insert into categorie values(1,'ous');
-insert into produit values(1,'ous',2,'12/may/2021',3,'oki',1);
+create table accounts (
+    id_user int not null,
+    username  varchar(50) not null,
+    password varchar(100) not null,
+    id_prev int not null,
+    PRIMARY KEY (id_user),
+    Foreign key (id_user) REFERENCES employe(code_emp) ON DELETE CASCADE,
+    Foreign key (id_prev) REFERENCES prevliage(id_pre) ON DELETE CASCADE);
+create table prevliage(
+    id_pre int not null,
+    pre_name varchar(20)not null,
+    profile varchar(20) not null,
+    PRIMARY KEY (id_pre));
+/*--creating profiles and users in  database--*/
 create user user1 identified by user1;
 create user user2 identified by user2;
 create user user3 identified by user3;
@@ -96,6 +109,18 @@ Create profile HR_Manager limit SESSIONS_PER_USER UNLIMITED;
 Create profile Supply_Manager limit SESSIONS_PER_USER UNLIMITED;
 alter user user2 Profile  HR_manager ;
 alter user user3 Profile  Supply_manager ;
+/*--inserting test subject into database--*/
+insert into prevliage values (1,'user1','user1');
+insert into prevliage values (2,'user2','user2');
+insert into prevliage values (3,'user3','user3');
+insert into categorie values(1,'ous');
+insert into Departement values(1,'department informatique','boumdjoud','amel');
+insert into employe values(1,'mahdjour','oussama','enginner','information system enginner',1);
+insert into accounts values(1,'ous','ous',1);
+insert into produit values(1,'ous',2,'12/may/2021',3,'oki',1);
+commit;
 desc dba_users;
 select * from dba_users;
-commit;
+SELECT * FROM  accounts where username='ous' and password= 'ous';
+
+select * from prevliage;
