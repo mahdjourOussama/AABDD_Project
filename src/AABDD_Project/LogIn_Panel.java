@@ -5,6 +5,9 @@
  */
 package AABDD_Project;
 
+import java.awt.BorderLayout;
+import java.util.Arrays;
+
 /**
  *
  * @author mahdj
@@ -94,8 +97,14 @@ public class LogIn_Panel extends javax.swing.JPanel {
 
     private void LogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInButtonActionPerformed
         username=UsernameField.getText();
-        password=PasswordField.getPassword().toString();
-        Sql.test(username, password);
+        password=PasswordField.getText();
+        int priv =Sql.test_user(username, password);
+        if(priv==1){
+            MainFrame.Container.removeAll();
+            MainFrame.Container.repaint();
+            MainFrame.Container.revalidate();
+            MainFrame.Container.add(MainFrame.user1_Menu1,BorderLayout.WEST);
+        }
     }//GEN-LAST:event_LogInButtonActionPerformed
     public String username="",password="";
 

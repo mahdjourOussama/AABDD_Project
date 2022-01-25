@@ -33,26 +33,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         consultation_Panel1 = new AABDD_Project.Consultation_Panel();
         action_Panel1 = new AABDD_Project.Action_Panel();
-        Menu_user1 = new javax.swing.JPanel();
+        user2_Menu1 = new AABDD_Project.User2_Menu();
+        user3_Menu1 = new AABDD_Project.User3_Menu();
+        user1_Menu1 = new AABDD_Project.User1_Menu();
         Container = new javax.swing.JPanel();
-        logIn_Panel2 = new AABDD_Project.LogIn_Panel();
-
-        javax.swing.GroupLayout Menu_user1Layout = new javax.swing.GroupLayout(Menu_user1);
-        Menu_user1.setLayout(Menu_user1Layout);
-        Menu_user1Layout.setHorizontalGroup(
-            Menu_user1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        Menu_user1Layout.setVerticalGroup(
-            Menu_user1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        Log_in = new AABDD_Project.LogIn_Panel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 400));
 
         Container.setLayout(new java.awt.BorderLayout());
-        Container.add(logIn_Panel2, java.awt.BorderLayout.CENTER);
+        Container.add(Log_in, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,10 +96,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
     boolean books_menu_on=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JPanel Container;
-    public javax.swing.JPanel Menu_user1;
-    public AABDD_Project.Action_Panel action_Panel1;
-    public AABDD_Project.Consultation_Panel consultation_Panel1;
-    public AABDD_Project.LogIn_Panel logIn_Panel2;
+    public static javax.swing.JPanel Container;
+    public AABDD_Project.LogIn_Panel Log_in;
+    public static AABDD_Project.Action_Panel action_Panel1;
+    public static AABDD_Project.Consultation_Panel consultation_Panel1;
+    public static AABDD_Project.User1_Menu user1_Menu1;
+    public static AABDD_Project.User2_Menu user2_Menu1;
+    public static AABDD_Project.User3_Menu user3_Menu1;
     // End of variables declaration//GEN-END:variables
 }

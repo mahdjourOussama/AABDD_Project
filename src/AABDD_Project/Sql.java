@@ -27,38 +27,49 @@ public  class Sql {
 //============================//END OF THE Declaration//========================
 
 //============================//START OF THE Methode//==========================
-    /**
-     * method of inserting Into SellingList
-     *
-     * @param IDProduct
-     *
-     * @param IDFacture
-     * @param Qte
-     * @param SellingPrice
-     * @param BuyingPrice
-     * @param Position
-     * 
-     *
-     */
-    public static void InsertToProduit(String IDProduct, String IDFacture,
-            String Qte ,String SellingPrice,String BuyingPrice,String Position) {
+                          
+    public static void InsertToProducts(String code_prod, String Designation,
+            String Qte_stock ,String Date_stock,String seuil,String type,String num_cat) {
 
-        String sql = "INSERT INTO produit(`IDProduct`, `IDSellingFacture`,"
-                + " `Qte`, `CurrentSellingPrice`, `CurrentBuyingPrice`,Position) "
+        String sql = "INSERT INTO `products`(`code_prod`, `Designation`,"
+                + " `Qte_stock`, `Date_stock`, `CurrentBuyingPrice`,Position) "
                 + "VALUES (?,?,?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
-            pst.setString(1, IDProduct);
-            pst.setString(2, IDFacture);
-            pst.setString(3, Qte);
-            pst.setString(4, SellingPrice);
-            pst.setString(5, BuyingPrice);
-            pst.setString(6, Position);
+            pst.setString(1, code_prod);
+            pst.setString(2, Designation);
+            pst.setString(3, Qte_stock);
+            pst.setString(4, Date_stock);
+            pst.setString(5, seuil);
+            pst.setString(6, type);
+            pst.setString(6, num_cat);
+
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Added TO SellingList\t");
+            JOptionPane.showMessageDialog(null, "Added TO produit\t");
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "insert To SellingList\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "insert To produit\n" + e.getMessage());
+        }
+    }
+   
+//============================//END OF THE Methode//============================
+
+
+//============================//START OF THE Methode//==========================
+    /**
+     *
+     * Delete The Product By turning off the Active
+     *
+     * @param code_prod
+     */
+    public static void DeleteFromProducts(String code_prod) {
+        String sql = "UPDATE `Products` SET `Active`= 0 WHERE   code_prod ='" + code_prod + "';";
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Delete From Products\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -66,37 +77,18 @@ public  class Sql {
 //============================//START OF THE Methode//==========================
     /**
      *
-     * Delete The Product By turning of the Active
+     * Restoring The Product By turning on the Active
      *
-     * @param ID
+     * @param code_prod
      */
-    public static void DeleteFromSupplier(String ID) {
-        String sql = "UPDATE `Supplier` SET `Active`= 0 WHERE   IDSupplier ='" + ID + "';";
+    public static void RestoreFromProducts(String code_prod) {
+        String sql = "UPDATE `Products` set `Active`= 1 WHERE  code_prod ='" + code_prod + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Delete From Supplier\n" + e.getMessage());
-        }
-    }
-//============================//END OF THE Methode//============================
-
-//============================//START OF THE Methode//==========================
-    /**
-     *
-     * Restoring The Product By turning of the Active
-     *
-     * @param ID
-     */
-    public static void RestoreFromSupplier(String ID) {
-        String sql = "UPDATE `Supplier` set `Active`= 1 WHERE IDSupplier ='" + ID + "';";
-        try {
-            pst = conn.prepareStatement(sql);
-            pst.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Restore From Supplier\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Restore From Products\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -214,8 +206,21 @@ public static DefaultListModel<String []> SearchForRecepice (String ConfigID){
 }
 //============================//END OF THE Methode//============================
 
-public static void test(String username,String password){
-     username.charAt(20);
+public static int test_user(String username,String password){
+    ResultSet rs =null ;
+    String sql="SELECT * FROM  accounts where password= '"+password+"'";
+    try {
+            pst = conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            rs.next();
+            int priv= rs.getInt("id_prev"); 
+            return priv;
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Test User\n"+e.getMessage());
+            return 0;
+    }
+    
 }
 
 //============================//START OF THE Methode//==========================

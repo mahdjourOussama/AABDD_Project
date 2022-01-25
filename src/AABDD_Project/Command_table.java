@@ -9,12 +9,12 @@ package AABDD_Project;
  *
  * @author mahdj
  */
-public class Employee_Table extends javax.swing.JPanel {
+public class Command_table extends javax.swing.JPanel {
 
     /**
      * Creates new form Departments_Panel
      */
-    public Employee_Table() {
+    public Command_table() {
         initComponents();
     }
 
@@ -28,9 +28,9 @@ public class Employee_Table extends javax.swing.JPanel {
     private void initComponents() {
 
         Employe_table = new javax.swing.JScrollPane();
-        Employee_Table = new javax.swing.JTable();
+        Command_Table = new javax.swing.JTable();
 
-        Employee_Table.setModel(new javax.swing.table.DefaultTableModel(
+        Command_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -46,14 +46,14 @@ public class Employee_Table extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        Employe_table.setViewportView(Employee_Table);
-        if (Employee_Table.getColumnModel().getColumnCount() > 0) {
-            Employee_Table.getColumnModel().getColumn(0).setResizable(false);
-            Employee_Table.getColumnModel().getColumn(1).setResizable(false);
-            Employee_Table.getColumnModel().getColumn(2).setResizable(false);
-            Employee_Table.getColumnModel().getColumn(3).setResizable(false);
-            Employee_Table.getColumnModel().getColumn(4).setResizable(false);
-            Employee_Table.getColumnModel().getColumn(5).setResizable(false);
+        Employe_table.setViewportView(Command_Table);
+        if (Command_Table.getColumnModel().getColumnCount() > 0) {
+            Command_Table.getColumnModel().getColumn(0).setResizable(false);
+            Command_Table.getColumnModel().getColumn(1).setResizable(false);
+            Command_Table.getColumnModel().getColumn(2).setResizable(false);
+            Command_Table.getColumnModel().getColumn(3).setResizable(false);
+            Command_Table.getColumnModel().getColumn(4).setResizable(false);
+            Command_Table.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -70,7 +70,7 @@ public class Employee_Table extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTable Command_Table;
     private javax.swing.JScrollPane Employe_table;
-    public javax.swing.JTable Employee_Table;
     // End of variables declaration//GEN-END:variables
 }
