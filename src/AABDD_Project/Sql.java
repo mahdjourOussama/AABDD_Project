@@ -25,14 +25,33 @@ public  class Sql {
     static Connection conn = Oracle.ConnectDB();
     static PreparedStatement pst = null;
 //============================//END OF THE Declaration//========================
-
+    
 //============================//START OF THE Methode//==========================
-                          
+public static int test_user_priv(String username,String password){
+    ResultSet rs =null ;
+    String sql="SELECT * FROM  accounts where password= '"+password+"'";
+    try {
+            pst = conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            rs.next();
+            int priv= rs.getInt("id_prev"); 
+            return priv;
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Test User\n"+e.getMessage());
+            return 0;
+    }
+    
+}
+//============================//END OF THE Methode//============================
+
+//============================//table Employe//=================================
+//============================//START OF THE Methode//==========================                       
     public static void InsertToProduit(String code_prod, String Designation,
             String Qte_stock ,String Date_stock,String seuil,String type,String num_cat) {
 
-        String sql = "INSERT INTO `products`(`code_prod`, `Designation`,"
-                + " `Qte_stock`, `Date_stock`, `CurrentBuyingPrice`,Position) "
+        String sql = "INSERT INTO products(code_prod, Designation,"
+                + " Qte_stock, Date_stock, CurrentBuyingPrice,Position) "
                 + "VALUES (?,?,?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -51,9 +70,7 @@ public  class Sql {
             JOptionPane.showMessageDialog(null, "insert To Produit\n" + e.getMessage());
         }
     }
-   
 //============================//END OF THE Methode//============================
-
 
 //============================//START OF THE Methode//==========================
     /**
@@ -63,7 +80,7 @@ public  class Sql {
      * @param code_prod
      */
     public static void DeleteFromProduit(String code_prod) {
-        String sql = "UPDATE `Produit` SET `Active`= 0 WHERE   code_prod ='" + code_prod + "';";
+        String sql = "UPDATE Produit SET Active= 0 WHERE   code_prod ='" + code_prod + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -82,7 +99,7 @@ public  class Sql {
      * @param code_prod
      */
     public static void RestoreFromProduit(String code_prod) {
-        String sql = "UPDATE `Produit` set `Active`= 1 WHERE  code_prod ='" + code_prod + "';";
+        String sql = "UPDATE Produit set Active= 1 WHERE  code_prod ='" + code_prod + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -125,29 +142,48 @@ public  class Sql {
         }
     }
 //============================//END OF THE Methode//============================
-    
+
 //============================//START OF THE Methode//==========================
-public static int test_user_priv(String username,String password){
-    ResultSet rs =null ;
-    String sql="SELECT * FROM  accounts where password= '"+password+"'";
-    try {
-            pst = conn.prepareStatement(sql);
-            rs=pst.executeQuery();
-            rs.next();
-            int priv= rs.getInt("id_prev"); 
-            return priv;
-    } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Test User\n"+e.getMessage());
-            return 0;
-    }
-    
-}
+    /**
+     *
+     * @param table The JTable u want to fill
+     * @param active 
+     */
+  public static void fillProduitTable(JTable table,String active){
+        ResultSet rs = null;
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+
+      String sql ="select * from produit where  active= '"+active+"'";
+     try {
+        pst = conn.prepareStatement(sql);
+        rs=pst.executeQuery(sql); 
+      while(rs.next()){
+         String code_prod =rs.getString("code_pro"),
+                Designation=rs.getString("Designation"),
+                Qte_stock=rs.getString("Qte_stock"),
+                Date_stock=rs.getString("Date_stock"),
+               seuil=rs.getString("seuil"),
+                type=rs.getString("type_pro"),
+                num_cat=rs.getString("num_cat");
+
+
+            tab.addRow(new Object[]{code_prod,Designation,Qte_stock,Date_stock,seuil,type,num_cat});    
+      }
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
 //============================//END OF THE Methode//============================
-    
-//============================//startOF THE Methode//============================
+
+ 
+//============================//table Employe//=================================
+//============================//startOF THE Methode//===========================
  /**
-     * method of inserting Into Employee
+     * method of inserting Into Employe
      *
      * @param code_emp
      *
@@ -159,13 +195,11 @@ public static int test_user_priv(String username,String password){
      * 
      *
      */
-
-
- public static void InsertToEmployee(String code_emp ,String nom_emp,
+ public static void InsertToEmploye(String code_emp ,String nom_emp,
          String prenom_emp,String grade_emp,String function,String cod_dep) {
 
-        String sql = "INSERT INTO `Employee`(`code_emp`, `nom_emp`,"
-                + " `prenom_emp`, `grade_emp`, `function`, `cod_dep`) "
+        String sql = "INSERT INTO Employe(code_emp, nom_emp,"
+                + " prenom_emp, grade_emp, fonction, cod_dep) "
                 + "VALUES (?,?,?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -178,10 +212,10 @@ public static int test_user_priv(String username,String password){
 
 
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Added TO Employee\t");
+            JOptionPane.showMessageDialog(null, "Added TO Employe\t");
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "insert To Employee\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "insert To Employe\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -192,8 +226,8 @@ public static int test_user_priv(String username,String password){
      *
      * @param code_emp
      */
-    public static void DeleteFromEmployee(String code_emp) {
-        String sql = "UPDATE `Employee` SET `Active`= 0 WHERE   code_emp ='" + code_emp + "';";
+    public static void DeleteFromEmploye(String code_emp) {
+        String sql = "UPDATE Employe SET Active= 0 WHERE   code_emp ='" + code_emp + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -210,8 +244,8 @@ public static int test_user_priv(String username,String password){
      *
      * @param code_emp
      */
-    public static void RestoreFromEmployee(String code_emp) {
-        String sql = "UPDATE `Employee` set `Active`= 1 WHERE code_emp ='" + code_emp + "';";
+    public static void RestoreFromEmploye(String code_emp) {
+        String sql = "UPDATE Employe set Active= 1 WHERE code_emp ='" + code_emp + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -221,6 +255,7 @@ public static int test_user_priv(String username,String password){
         }
     }
 //============================//END OF THE Methode//============================
+    
 //============================//START OF THE Methode//==========================
     /**
      *
@@ -230,9 +265,9 @@ public static int test_user_priv(String username,String password){
      * @param selection the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> SelectEmployee(String Active, String selection) {
+    public static DefaultListModel<String> SelectEmploye(String Active, String selection) {
             ResultSet rs = null;
-        String sql = "select * from Employee where active ='"+Active+"';" ;
+        String sql = "select * from Employe where active ='"+Active+"';" ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -248,7 +283,7 @@ public static int test_user_priv(String username,String password){
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from Employee\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from Employe\t with  " + selection + "\n" + e.getMessage());
             return null;
         }
     }
@@ -257,40 +292,10 @@ public static int test_user_priv(String username,String password){
 //============================//START OF THE Methode//==========================
     /**
      *
-     * @param List The List u want to fill With Componts
-     * @param active 
-     * @return ID list  
-     */
-public static DefaultListModel fillEmployeeList(JList List,String active){
-          ResultSet rs = null;
-        DefaultListModel model =(DefaultListModel) List.getModel(),
-                code_emps= new DefaultListModel();
-        model.removeAllElements();
-        String sql ="select * from Employee where  `active`= '"+active+"'  LIMIT 30;";
-     try {
-        pst = conn.prepareStatement(sql);
-        rs=pst.executeQuery(sql); 
-      while(rs.next()){
-         String code_emp=rs.getString("code_emp"),
-                Nom_emp=rs.getString("Nom_emp");
-            model.addElement(Nom_emp);
-            code_emps.addElement(code_emp);
-      }
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
-     return code_emps;
-  }
-//============================//END OF THE Methode//============================
-
-
-//============================//START OF THE Methode//==========================
-    /**
-     *
      * @param table The JTable u want to fill
      * @param active 
      */
-  public static void fillEmployeeTable(JTable table,String active){
+  public static void fillEmployeTable(JTable table,String active){
         ResultSet rs = null;
         DefaultTableModel tab =(DefaultTableModel) table.getModel();
 
@@ -298,7 +303,7 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
             tab.removeRow(0);
         }
 
-      String sql ="select * from Employee where  `active`= '"+active+"'";
+      String sql ="select * from Employe where  active= "+active+"";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
@@ -307,7 +312,7 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
                 nom_emp=rs.getString("nom_emp"),
                 prenom_emp=rs.getString("prenom_emp"),
                 grade_emp=rs.getString("grade_emp"),
-               function=rs.getString("function"),
+               function=rs.getString("fonction"),
                 code_dep=rs.getString("code_dep");
 
 
@@ -319,8 +324,7 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
   }
 //============================//END OF THE Methode//============================
   
-//============================//table fournissurs//============================
-  
+//============================//table fournissurs//=============================
 //============================//START OF THE Methode//==========================
  /**
      * method of inserting Into Fournissuer
@@ -333,11 +337,11 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
      * 
      *
      */
-     public static void InsertToFourniseur(
+     public static void InsertToFournisseur(
             String code_fournisseur ,String nom_fournisseur,String num_compte,String num_tel) {
 
-        String sql = "INSERT INTO `Fourniseur`(`code_fournissuer`, `nom_fournissuer`,"
-                + " `num_compte`, `num_tel`) "
+        String sql = "INSERT INTO Fournisseur(code_fournissuer, nom_fournissuer,"
+                + " num_compte, num_tel) "
                 + "VALUES (?,?,?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -349,10 +353,10 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
 
 
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Added TO Fourniseur\t");
+            JOptionPane.showMessageDialog(null, "Added TO Fournisseur\t");
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "insert To Fourniseur\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "insert To Fournisseur\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -364,14 +368,14 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
      *
      * @param code_fournisseur
      */
-    public static void DeleteFromFourniseur(String code_fournisseur) {
-        String sql = "UPDATE `Fourniseur` SET `Active`= 0 WHERE   code_fournisseur ='" + code_fournisseur + "';";
+    public static void DeleteFromFournisseur(String code_fournisseur) {
+        String sql = "UPDATE Fournisseur SET Active= 0 WHERE   code_fournisseur ='" + code_fournisseur + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Delete From Fourniseur\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Delete From Fournisseur\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -383,14 +387,14 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
      *
      * @param code_emp
      */
-    public static void RestoreFromFourniseur(String code_fournisseur) {
-        String sql = "UPDATE `Fourniseur` set `Active`= 1 WHERE code_fournisseur ='" + code_fournisseur + "';";
+    public static void RestoreFromFournisseur(String code_fournisseur) {
+        String sql = "UPDATE Fournisseur set Active= 1 WHERE code_fournisseur ='" + code_fournisseur + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Restore From Fourniseur\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Restore From Fournisseur\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -404,9 +408,9 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
      * @param selection the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> SelectFourniseur(String Active, String selection) {
+    public static DefaultListModel<String> SelectFournisseur(String Active, String selection) {
             ResultSet rs = null;
-        String sql = "select * from Fourniseur where active ='"+Active+"';" ;
+        String sql = "select * from Fournisseur where active ='"+Active+"';" ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -422,7 +426,7 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from Fourniseur\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from Fournisseur\t with  " + selection + "\n" + e.getMessage());
             return null;
         }
     }
@@ -431,40 +435,10 @@ public static DefaultListModel fillEmployeeList(JList List,String active){
 //============================//START OF THE Methode//==========================
     /**
      *
-     * @param List The List u want to fill With Componts
-     * @param active 
-     * @return ID list  
-     */
-public static DefaultListModel fillFourniseurList(JList List,String active){
-          ResultSet rs = null;
-        DefaultListModel model =(DefaultListModel) List.getModel(),
-                code_fournisseurs= new DefaultListModel();
-        model.removeAllElements();
-        String sql ="select * from Fourniseur where  `active`= '"+active+"'  LIMIT 30;";
-     try {
-        pst = conn.prepareStatement(sql);
-        rs=pst.executeQuery(sql); 
-      while(rs.next()){
-         String code_fournisseur=rs.getString("code_fournisseur"),
-                nom_fournisseur=rs.getString("nom_fournisseur");
-            model.addElement(nom_fournisseur);
-            code_fournisseurs.addElement(code_fournisseur);
-      }
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
-     return code_fournisseurs;
-  }
-//============================//END OF THE Methode//============================
-
-
-//============================//START OF THE Methode//==========================
-    /**
-     *
      * @param table The JTable u want to fill
      * @param active 
      */
-  public static void fillFourniseurTable(JTable table,String active){
+  public static void fillFournisseurTable(JTable table,String active){
         ResultSet rs = null;
         DefaultTableModel tab =(DefaultTableModel) table.getModel();
 
@@ -472,7 +446,7 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
             tab.removeRow(0);
         }
 
-      String sql ="select * from Fourniseur where  `active`= '"+active+"'";
+      String sql ="select * from Fournisseur where  active= '"+active+"'";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
@@ -494,7 +468,7 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
 //============================//table departements//============================
 //============================//START OF THE Methode//==========================
  /**
-     * method of inserting Into Departments
+     * method of inserting Into Departement
      *
      * @param Code_dep
      *
@@ -505,11 +479,11 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
      *
      */
 
- public static void InsertToDepartments(
+ public static void InsertToDepartement(
             String Code_dep ,String Intitule_dep,String Nom_chef,String Prenom_chef) {
 
-        String sql = "INSERT INTO `Departments`(`code_fournissuer`, `Intitule_dep`,"
-                + " `Nom_chef`, `Prenom_chef`) "
+        String sql = "INSERT INTO Departement(code_fournissuer, Intitule_dep,"
+                + " Nom_chef, Prenom_chef) "
                 + "VALUES (?,?,?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -518,10 +492,10 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
             pst.setString(3, Nom_chef);
             pst.setString(4, Prenom_chef);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Added TO Departments\t");
+            JOptionPane.showMessageDialog(null, "Added TO Departement\t");
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "insert To Departments\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "insert To Departement\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -533,14 +507,14 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
      *
      * @param Code_dep
      */
-    public static void DeleteFromDepartments(String code_dep) {
-        String sql = "UPDATE `Departments` SET `Active`= 0 WHERE   code_dep ='" + code_dep + "';";
+    public static void DeleteFromDepartement(String code_dep) {
+        String sql = "UPDATE Departement SET Active= 0 WHERE   code_dep ='" + code_dep + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Delete From Departments\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Delete From Departement\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -552,14 +526,14 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
      *
      * @param code_dep
      */
-    public static void RestoreFromDepartments(String code_dep) {
-        String sql = "UPDATE `Departments` set `Active`= 1 WHERE code_dep ='" + code_dep + "';";
+    public static void RestoreFromDepartement(String code_dep) {
+        String sql = "UPDATE Departement set Active= 1 WHERE code_dep ='" + code_dep + "';";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Restore From Departments\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Restore From Departement\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -567,15 +541,15 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
 //============================//START OF THE Methode//==========================
     /**
      *
-     * Selecting a column from¨Departments Without Condition
+     * Selecting a column from¨Departement Without Condition
      *
      * @param Active this is active stats true or false
      * @param selection the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> SelectDepartments(String Active, String selection) {
+    public static DefaultListModel<String> SelectDepartement(String Active, String selection) {
             ResultSet rs = null;
-        String sql = "select * from Departmentsurniseur where active ='"+Active+"';" ;
+        String sql = "select * from Departementurniseur where active ='"+Active+"';" ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -591,7 +565,7 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from Departments\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from Departement\t with  " + selection + "\n" + e.getMessage());
             return null;
         }
     }
@@ -600,40 +574,10 @@ public static DefaultListModel fillFourniseurList(JList List,String active){
 //============================//START OF THE Methode//==========================
     /**
      *
-     * @param List The List u want to fill With Componts
-     * @param active 
-     * @return code_dep list  
-     */
-public static DefaultListModel fillDepartmentsList(JList List,String active){
-          ResultSet rs = null;
-        DefaultListModel model =(DefaultListModel) List.getModel(),
-                code_deps= new DefaultListModel();
-        model.removeAllElements();
-        String sql ="select * from Departments where  `active`= '"+active+"'  LIMIT 30;";
-     try {
-        pst = conn.prepareStatement(sql);
-        rs=pst.executeQuery(sql); 
-      while(rs.next()){
-         String code_dep=rs.getString("code_dep"),
-                Intitule_dep=rs.getString("Intitule_dep");
-            model.addElement(Intitule_dep);
-            code_deps.addElement(code_deps);
-      }
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
-     return code_deps;
-  }
-//============================//END OF THE Methode//============================
-
-
-//============================//START OF THE Methode//==========================
-    /**
-     *
      * @param table The JTable u want to fill
      * @param active 
      */
-  public static void fillDepartmentsTable(JTable table,String active){
+  public static void fillDepartementTable(JTable table,String active){
         ResultSet rs = null;
         DefaultTableModel tab =(DefaultTableModel) table.getModel();
 
@@ -641,7 +585,7 @@ public static DefaultListModel fillDepartmentsList(JList List,String active){
             tab.removeRow(0);
         }
 
-      String sql ="select * from Departments where  `active`= '"+active+"'";
+      String sql ="select * from Departement where  active= '"+active+"'";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 

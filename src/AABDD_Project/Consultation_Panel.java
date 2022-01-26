@@ -5,12 +5,60 @@
  */
 package AABDD_Project;
 
+import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mahdj
  */
 public class Consultation_Panel extends javax.swing.JPanel {
-
+    public void fillTable(){
+        if (table.equalsIgnoreCase("produit")){
+            Table_Container.removeAll();
+            Table_Container.add(products_Table1,BorderLayout.CENTER); 
+            products_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("affectation")){
+            Table_Container.removeAll();
+            Table_Container.add(affectation_Table1,BorderLayout.CENTER); 
+            affectation_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("command")){
+            Table_Container.removeAll();
+            Table_Container.add(command_Table1,BorderLayout.CENTER);
+            command_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("department")){
+            Table_Container.removeAll();
+            Table_Container.add(departments_Table1,BorderLayout.CENTER); 
+            departments_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("employe")){
+            Table_Container.removeAll();
+            Table_Container.add(employee_Table1,BorderLayout.CENTER); 
+            employee_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("fournisseur")){
+            Table_Container.removeAll();
+            Table_Container.add(fourniseur_Table1,BorderLayout.CENTER); 
+            fourniseur_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("sortie")){
+            Table_Container.removeAll();
+            Table_Container.add(sortie_Table1,BorderLayout.CENTER); 
+            sortie_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("livraison")){
+            Table_Container.removeAll();
+            Table_Container.add(livraison_Table1,BorderLayout.CENTER); 
+            livraison_Table1.fillTable(active);
+        }else if (table.equalsIgnoreCase("categorie")){
+            Table_Container.removeAll();
+            Table_Container.add(cat_Table1,BorderLayout.CENTER); 
+            cat_Table1.fillTable(active);
+        }else {
+            JOptionPane.showMessageDialog(null, "error dans le type de table");
+        }
+        refresh();
+    }
+    public void refresh(){
+        Table_Container.repaint();
+        Table_Container.revalidate();
+    }
     /**
      * Creates new form Categories_Panel
      */
@@ -31,6 +79,11 @@ public class Consultation_Panel extends javax.swing.JPanel {
         employee_Table1 = new AABDD_Project.Employee_Table();
         fourniseur_Table1 = new AABDD_Project.Fourniseur_Table();
         products_Table1 = new AABDD_Project.Products_Table();
+        affectation_Table1 = new AABDD_Project.Affectation_Table();
+        command_Table1 = new AABDD_Project.Command_Table();
+        sortie_Table1 = new AABDD_Project.Sortie_Table();
+        livraison_Table1 = new AABDD_Project.livraison_Table();
+        cat_Table1 = new AABDD_Project.cat_Table();
         Searchfield = new javax.swing.JTextField();
         Table_Container = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -45,7 +98,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Table_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Searchfield, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(Searchfield, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1))
         );
@@ -59,15 +112,20 @@ public class Consultation_Panel extends javax.swing.JPanel {
                 .addComponent(Table_Container, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    public String table="";
-    public boolean active=true;
+    public static  String table="";
+    public static boolean active=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Searchfield;
-    public javax.swing.JPanel Table_Container;
-    public AABDD_Project.Departments_Table departments_Table1;
-    public AABDD_Project.Employee_Table employee_Table1;
-    public AABDD_Project.Fourniseur_Table fourniseur_Table1;
-    private javax.swing.JButton jButton1;
-    public AABDD_Project.Products_Table products_Table1;
+    public static javax.swing.JTextField Searchfield;
+    public static javax.swing.JPanel Table_Container;
+    public static AABDD_Project.Affectation_Table affectation_Table1;
+    public static AABDD_Project.cat_Table cat_Table1;
+    public static AABDD_Project.Command_Table command_Table1;
+    public static AABDD_Project.Departments_Table departments_Table1;
+    public static AABDD_Project.Employee_Table employee_Table1;
+    public static AABDD_Project.Fourniseur_Table fourniseur_Table1;
+    public static javax.swing.JButton jButton1;
+    public static AABDD_Project.livraison_Table livraison_Table1;
+    public static AABDD_Project.Products_Table products_Table1;
+    public static AABDD_Project.Sortie_Table sortie_Table1;
     // End of variables declaration//GEN-END:variables
 }

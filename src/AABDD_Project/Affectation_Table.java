@@ -5,12 +5,16 @@
  */
 package AABDD_Project;
 
+import static AABDD_Project.Consultation_Panel.table;
+
 /**
  *
  * @author mahdj
  */
 public class Affectation_Table extends javax.swing.JPanel {
-
+    public void fillTable(boolean active){
+        
+    }
     /**
      * Creates new form Departments_Panel
      */

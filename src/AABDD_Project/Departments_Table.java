@@ -10,14 +10,22 @@ package AABDD_Project;
  * @author mahdj
  */
 public class Departments_Table extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form Departments_Panel
      */
     public Departments_Table() {
         initComponents();
     }
-
+    public void fillTable(boolean active){
+        String active_stat= "1";
+        if (active){
+            active_stat="1";
+        }else {
+            active_stat="0";
+        }
+        Sql.fillDepartementTable(Departments_Table, active_stat);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,9 +36,9 @@ public class Departments_Table extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        Employee_Table = new javax.swing.JTable();
+        Departments_Table = new javax.swing.JTable();
 
-        Employee_Table.setModel(new javax.swing.table.DefaultTableModel(
+        Departments_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -38,7 +46,7 @@ public class Departments_Table extends javax.swing.JPanel {
                 "Code", "intitule", "chef  name", "chef familyname"
             }
         ));
-        jScrollPane2.setViewportView(Employee_Table);
+        jScrollPane2.setViewportView(Departments_Table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -54,7 +62,7 @@ public class Departments_Table extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable Employee_Table;
+    public javax.swing.JTable Departments_Table;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

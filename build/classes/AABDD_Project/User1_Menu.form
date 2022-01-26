@@ -17,20 +17,35 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="UsernameLabel2" alignment="0" max="32767" attributes="0"/>
-          <Component id="Commands_button" alignment="0" pref="103" max="32767" attributes="0"/>
+          <Component id="Produit_button" alignment="0" max="32767" attributes="0"/>
+          <Component id="fournisseur_button" alignment="0" pref="128" max="32767" attributes="0"/>
+          <Component id="categorie_button" alignment="0" max="32767" attributes="0"/>
+          <Component id="Livraison_button" alignment="0" max="32767" attributes="0"/>
+          <Component id="affectation_button" alignment="0" max="32767" attributes="0"/>
+          <Component id="Log_out_button2" alignment="1" max="32767" attributes="0"/>
+          <Component id="Sortie_button" alignment="0" max="32767" attributes="0"/>
           <Component id="Employe_button" alignment="0" max="32767" attributes="0"/>
-          <Component id="Log_out_button2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="UsernameLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="UsernameLabel2" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="Commands_button" min="-2" max="-2" attributes="0"/>
+              <Component id="Produit_button" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="Employe_button" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="95" max="32767" attributes="0"/>
+              <Component id="Sortie_button" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="categorie_button" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="Livraison_button" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="affectation_button" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="Employe_button" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="fournisseur_button" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
               <Component id="Log_out_button2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -43,20 +58,66 @@
         <Property name="text" type="java.lang.String" value="User 1"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Commands_button">
+    <Component class="javax.swing.JButton" name="Produit_button">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Commands"/>
+        <Property name="text" type="java.lang.String" value="Produit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Produit_buttonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Employe_button">
       <Properties>
         <Property name="text" type="java.lang.String" value="Employe"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Employe_buttonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Log_out_button2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Log Out"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="fournisseur_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fournisseur"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fournisseur_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="categorie_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Categorie"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categorie_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Livraison_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Livraison"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Livraison_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="affectation_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Affectation"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="affectation_buttonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Sortie_button">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sortie"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Sortie_buttonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

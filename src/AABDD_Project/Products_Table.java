@@ -17,7 +17,15 @@ public class Products_Table extends javax.swing.JPanel {
     public Products_Table() {
         initComponents();
     }
-
+    public void fillTable(boolean active){
+        String active_stat= "1";
+        if (active){
+            active_stat="1";
+        }else {
+            active_stat="0";
+        }
+        Sql.fillProduitTable(Product_table, active_stat);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,11 +43,11 @@ public class Products_Table extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Designation", "Qte Stock", "categorie", "date stock", "type produit", "seuil"
+                "Designation", "Qte Stock", "categorie", "date stock", "type produit", "seuil", "Categorie"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

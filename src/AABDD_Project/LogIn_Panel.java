@@ -104,6 +104,16 @@ public class LogIn_Panel extends javax.swing.JPanel {
             MainFrame.Container.repaint();
             MainFrame.Container.revalidate();
             MainFrame.Container.add(MainFrame.user1_Menu1,BorderLayout.WEST);
+        }else if(priv==2){
+            MainFrame.Container.removeAll();
+            MainFrame.Container.repaint();
+            MainFrame.Container.revalidate();
+            MainFrame.Container.add(MainFrame.user2_Menu1,BorderLayout.WEST);
+        }else if(priv==3){
+            MainFrame.Container.removeAll();
+            MainFrame.Container.repaint();
+            MainFrame.Container.revalidate();
+            MainFrame.Container.add(MainFrame.user3_Menu1,BorderLayout.WEST);
         }
     }//GEN-LAST:event_LogInButtonActionPerformed
     public String username="",password="";

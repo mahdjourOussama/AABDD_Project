@@ -28,46 +28,165 @@ public class User1_Menu extends javax.swing.JPanel {
     private void initComponents() {
 
         UsernameLabel2 = new javax.swing.JLabel();
-        Commands_button = new javax.swing.JButton();
+        Produit_button = new javax.swing.JButton();
         Employe_button = new javax.swing.JButton();
         Log_out_button2 = new javax.swing.JButton();
+        fournisseur_button = new javax.swing.JButton();
+        categorie_button = new javax.swing.JButton();
+        Livraison_button = new javax.swing.JButton();
+        affectation_button = new javax.swing.JButton();
+        Sortie_button = new javax.swing.JButton();
 
         UsernameLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         UsernameLabel2.setText("User 1");
 
-        Commands_button.setText("Commands");
+        Produit_button.setText("Produit");
+        Produit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Produit_buttonActionPerformed(evt);
+            }
+        });
 
         Employe_button.setText("Employe");
+        Employe_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Employe_buttonActionPerformed(evt);
+            }
+        });
 
         Log_out_button2.setText("Log Out");
+
+        fournisseur_button.setText("Fournisseur");
+        fournisseur_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fournisseur_buttonActionPerformed(evt);
+            }
+        });
+
+        categorie_button.setText("Categorie");
+        categorie_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categorie_buttonActionPerformed(evt);
+            }
+        });
+
+        Livraison_button.setText("Livraison");
+        Livraison_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Livraison_buttonActionPerformed(evt);
+            }
+        });
+
+        affectation_button.setText("Affectation");
+        affectation_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                affectation_buttonActionPerformed(evt);
+            }
+        });
+
+        Sortie_button.setText("Sortie");
+        Sortie_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Sortie_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(UsernameLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Commands_button, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+            .addComponent(Produit_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fournisseur_button, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+            .addComponent(categorie_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Livraison_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(affectation_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Log_out_button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Sortie_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Employe_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Log_out_button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(UsernameLabel2)
+                .addComponent(UsernameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Commands_button)
+                .addComponent(Produit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(Employe_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addComponent(Sortie_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(categorie_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Livraison_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(affectation_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Employe_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(fournisseur_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(Log_out_button2))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Produit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Produit_buttonActionPerformed
+        MainFrame.consultation_Panel1.table="Produit";
+        MainFrame.consultation_Panel1.fillTable();
+        MainFrame.action=true;
+        MainFrame.check_prev();
+    }//GEN-LAST:event_Produit_buttonActionPerformed
+
+    private void Employe_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Employe_buttonActionPerformed
+        MainFrame.consultation_Panel1.table="employe";
+        MainFrame.consultation_Panel1.fillTable();
+        MainFrame.action=false;
+        MainFrame.check_prev();
+    }//GEN-LAST:event_Employe_buttonActionPerformed
+
+    private void fournisseur_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fournisseur_buttonActionPerformed
+        MainFrame.consultation_Panel1.table="fournisseur";
+        MainFrame.consultation_Panel1.fillTable();
+        MainFrame.action=false;
+        MainFrame.check_prev();
+    }//GEN-LAST:event_fournisseur_buttonActionPerformed
+
+    private void categorie_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categorie_buttonActionPerformed
+        MainFrame.consultation_Panel1.table="categorie";
+        MainFrame.consultation_Panel1.fillTable();
+        MainFrame.action=true;
+        MainFrame.check_prev();
+    }//GEN-LAST:event_categorie_buttonActionPerformed
+
+    private void Livraison_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Livraison_buttonActionPerformed
+        MainFrame.consultation_Panel1.table="livraison";
+        MainFrame.consultation_Panel1.fillTable();
+        MainFrame.action=true;
+        MainFrame.check_prev();
+    }//GEN-LAST:event_Livraison_buttonActionPerformed
+
+    private void affectation_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_affectation_buttonActionPerformed
+        MainFrame.consultation_Panel1.table="affectation";
+        MainFrame.consultation_Panel1.fillTable();
+        MainFrame.action=true;
+        MainFrame.check_prev();
+    }//GEN-LAST:event_affectation_buttonActionPerformed
+
+    private void Sortie_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sortie_buttonActionPerformed
+        MainFrame.consultation_Panel1.table="sortie";
+        MainFrame.consultation_Panel1.fillTable();
+        MainFrame.action=true;
+        MainFrame.check_prev();
+    }//GEN-LAST:event_Sortie_buttonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Commands_button;
     private javax.swing.JButton Employe_button;
+    private javax.swing.JButton Livraison_button;
     private javax.swing.JButton Log_out_button2;
+    private javax.swing.JButton Produit_button;
+    private javax.swing.JButton Sortie_button;
     private javax.swing.JLabel UsernameLabel2;
+    private javax.swing.JButton affectation_button;
+    private javax.swing.JButton categorie_button;
+    private javax.swing.JButton fournisseur_button;
     // End of variables declaration//GEN-END:variables
 }

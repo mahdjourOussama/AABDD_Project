@@ -10,7 +10,9 @@ package AABDD_Project;
  * @author mahdj
  */
 public class Command_Table extends javax.swing.JPanel {
-
+    public void fillTable(boolean active){
+        
+    }
     /**
      * Creates new form Departments_Panel
      */

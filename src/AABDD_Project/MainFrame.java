@@ -6,15 +6,32 @@
 package AABDD_Project;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.border.Border;
+
+
 
 /**
  *
  * @author mahdj
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    public static void check_prev(){
+        if (action){
+            Container.remove(consultation_Panel1);
+            Container.add(action_Panel1,BorderLayout.CENTER);
+            action_Panel1.Consultation_Container.add(consultation_Panel1,BorderLayout.CENTER);
+        }else {
+            Container.remove(action_Panel1);
+            action_Panel1.Consultation_Container.remove(consultation_Panel1);
+            Container.add(consultation_Panel1,BorderLayout.CENTER);
+        }
+        refrechFrame();
+    }
+    public static void refrechFrame(){
+        Container.repaint();
+        Container.revalidate();
+        action_Panel1.Consultation_Container.repaint();
+        action_Panel1.Consultation_Container.revalidate();
+    }
     /**
      * Creates new form NewJFrame
      */
@@ -31,29 +48,30 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        consultation_Panel1 = new AABDD_Project.Consultation_Panel();
-        action_Panel1 = new AABDD_Project.Action_Panel();
-        user2_Menu1 = new AABDD_Project.User2_Menu();
         user3_Menu1 = new AABDD_Project.User3_Menu();
+        Log_in = new AABDD_Project.LogIn_Panel();
+        consultation_Panel1 = new AABDD_Project.Consultation_Panel();
         user1_Menu1 = new AABDD_Project.User1_Menu();
         Container = new javax.swing.JPanel();
-        Log_in = new AABDD_Project.LogIn_Panel();
+        action_Panel1 = new AABDD_Project.Action_Panel();
+        user2_Menu1 = new AABDD_Project.User2_Menu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 400));
 
         Container.setLayout(new java.awt.BorderLayout());
-        Container.add(Log_in, java.awt.BorderLayout.CENTER);
+        Container.add(action_Panel1, java.awt.BorderLayout.CENTER);
+        Container.add(user2_Menu1, java.awt.BorderLayout.LINE_START);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+            .addComponent(Container, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
         );
 
         pack();
@@ -94,7 +112,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-    boolean books_menu_on=true;
+    public static boolean action=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel Container;
     public AABDD_Project.LogIn_Panel Log_in;
