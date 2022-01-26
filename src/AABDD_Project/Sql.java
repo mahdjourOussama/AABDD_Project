@@ -45,7 +45,7 @@ public static int test_user_priv(String username,String password){
 }
 //============================//END OF THE Methode//============================
 
-//============================//table Employe//=================================
+//============================//table produit//=================================
 //============================//START OF THE Methode//==========================                       
     public static void InsertToProduit(String code_prod, String Designation,
             String Qte_stock ,String Date_stock,String seuil,String type,String num_cat) {
@@ -116,12 +116,12 @@ public static int test_user_priv(String username,String password){
      * Selecting a column from¨Produit Without Condition
      *
      * @param Active this is active stats true or false
-     * @param selection the Column you want to select
+     * @param ID the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> SelectProduit(String Active, String selection) {
+    public static DefaultListModel<String> SelectProduit(String Active, String ID) {
             ResultSet rs = null;
-        String sql = "select * from Produit where active ='"+Active+"';" ;
+        String sql = "select * from Produit where active ='"+Active+"' and code_pro="+ID+";" ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -130,14 +130,19 @@ public static int test_user_priv(String username,String password){
             DefaultListModel<String> result = new DefaultListModel();
 
             while (rs.next()) {
-                result.addElement(rs.getString(selection));
-
+                result.addElement(ID);
+                result.addElement(rs.getString(2));
+                result.addElement(rs.getString(3));
+                result.addElement(rs.getString(4));
+                result.addElement(rs.getString(5));
+                result.addElement(rs.getString(6));
+                result.addElement(rs.getString(7));
             }
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from Produit\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from Produit\t with  " + ID + "\n" + e.getMessage());
             return null;
         }
     }

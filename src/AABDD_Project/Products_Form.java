@@ -5,6 +5,9 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author mahdj
@@ -17,8 +20,18 @@ public class Products_Form extends javax.swing.JPanel {
     public Products_Form() {
         initComponents();
     }
-    public void fillForm(String id){
-        
+    public void fillForm(String id,String actif){
+        if(MainFrame.action_Panel1.edit){
+            
+        }else{
+            DefaultListModel l = Sql.SelectProduit(actif, id);
+            codeTXt.setText(id);
+            designation.setText(l.getElementAt(2).toString());
+            QteTxt.setText(l.getElementAt(3).toString());
+            ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText(l.getElementAt(4).toString());
+            SeuilTxt.setText(l.getElementAt(5).toString());
+            TypeTxt.setText(l.getElementAt(6).toString());
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.

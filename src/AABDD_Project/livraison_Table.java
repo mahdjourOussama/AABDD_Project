@@ -62,6 +62,11 @@ public class Livraison_Table extends javax.swing.JPanel {
         }
 
         Detailed.setText("Detaile");
+        Detailed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetailedActionPerformed(evt);
+            }
+        });
 
         Detailed_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +110,10 @@ public class Livraison_Table extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void DetailedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DetailedActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
