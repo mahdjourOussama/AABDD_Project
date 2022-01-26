@@ -5,6 +5,9 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author mahdj
@@ -54,7 +57,7 @@ public class Employee_Form extends javax.swing.JPanel {
 
         jLabel5.setText("Department");
 
-        DepartmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        DepartmentComboBox.setModel(mCombo);
 
         Clear_button.setText("Clear");
 
@@ -132,7 +135,7 @@ public class Employee_Form extends javax.swing.JPanel {
                     .addComponent(Submit_button)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Clear_button;

@@ -20,30 +20,32 @@ public class Action_Panel extends javax.swing.JPanel {
     public Action_Panel() {
         initComponents();
     }
-    public void fillPopUp(boolean delete){
+    public void fillPopUp(String active){
         table=MainFrame.consultation_Panel1.table;
         container.removeAll();
-        if (table.equalsIgnoreCase("produit")){
-           container.add(products_Form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("affectation")){
-            container.add(affectation_Form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("command")){
-            container.add(command_Form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("department")){
-            container.add(departments_Form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("employe")){
-            container.add(employee_Form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("fournisseur")){
-            container.add(fournisseur_form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("sortie")){
-            container.add(sortie_Form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("livraison")){
-            container.add(livraison_Form1,BorderLayout.CENTER);
-        }else if (table.equalsIgnoreCase("categorie")){
-           container.add(cat_Form1,BorderLayout.CENTER);
-        }else {
-            JOptionPane.showMessageDialog(null, "error dans le type de table");
-        }
+            if (table.equalsIgnoreCase("produit")){
+                container.add(products_Form1,BorderLayout.CENTER);
+                products_Form1.fillForm(active);
+             }else if (table.equalsIgnoreCase("affectation")){
+                 container.add(affectation_Form1,BorderLayout.CENTER);
+             }else if (table.equalsIgnoreCase("command")){
+                 container.add(command_Form1,BorderLayout.CENTER);
+             }else if (table.equalsIgnoreCase("department")){
+                 container.add(departments_Form1,BorderLayout.CENTER);
+             }else if (table.equalsIgnoreCase("employe")){
+                 container.add(employee_Form1,BorderLayout.CENTER);
+             }else if (table.equalsIgnoreCase("fournisseur")){
+                 container.add(fournisseur_form1,BorderLayout.CENTER);
+             }else if (table.equalsIgnoreCase("sortie")){
+                 container.add(sortie_Form1,BorderLayout.CENTER);
+             }else if (table.equalsIgnoreCase("livraison")){
+                 container.add(livraison_Form1,BorderLayout.CENTER);
+             }else if (table.equalsIgnoreCase("categorie")){
+                container.add(cat_Form1,BorderLayout.CENTER);
+             }else {
+                 JOptionPane.showMessageDialog(null, "error dans le type de table");
+             }
+
         container.repaint();
         container.revalidate();
         PopUp.setLocationRelativeTo(null);
@@ -163,12 +165,21 @@ public class Action_Panel extends javax.swing.JPanel {
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         edit=true;
-        fillPopUp(edit);
+        if(active){
+            fillPopUp("1");
+        }else {
+            fillPopUp("0");
+        }
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
         edit=false;
-        fillPopUp(edit);
+        if(active){
+            fillPopUp("1");
+        }else {
+            fillPopUp("0");
+        }
+
     }//GEN-LAST:event_ADDActionPerformed
 
     private void Deleted_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Deleted_CheckboxActionPerformed
@@ -182,8 +193,7 @@ public class Action_Panel extends javax.swing.JPanel {
         table=MainFrame.consultation_Panel1.table;
         String ID=MainFrame.consultation_Panel1.Selected_ID();
         if (table.equalsIgnoreCase("produit")){
-            System.out.println(ID);
-           Sql.DeleteFromProduit(ID);
+            Sql.DeleteFromProduit(ID);
         }else if (table.equalsIgnoreCase("affectation")){
             
         }else if (table.equalsIgnoreCase("command")){
@@ -203,6 +213,7 @@ public class Action_Panel extends javax.swing.JPanel {
         }else {
             JOptionPane.showMessageDialog(null, "error dans le type de table");
         }
+        MainFrame.consultation_Panel1.refresh();
     }//GEN-LAST:event_DeleteActionPerformed
 
     private void RestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreActionPerformed

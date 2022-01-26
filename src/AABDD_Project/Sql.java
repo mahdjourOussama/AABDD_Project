@@ -121,7 +121,7 @@ public static int test_user_priv(String username,String password){
      */
     public static DefaultListModel<String> SelectProduit(String Active, String ID) {
             ResultSet rs = null;
-        String sql = "select * from Produit where active ='"+Active+"' and code_pro="+ID+";" ;
+        String sql = "select * from Produit where active ="+Active+" and code_pro="+ID+";" ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -372,7 +372,7 @@ public static int test_user_priv(String username,String password){
      * @param code_fournisseur
      */
     public static void DeleteFromFournisseur(String code_fournisseur) {
-        String sql = "UPDATE Fournisseur SET Active= 0 WHERE   code_fournisseur ='" + code_fournisseur + "';";
+        String sql = "UPDATE Fournisseur SET Active= 0 WHERE   code_fournisseur ='" + code_fournisseur + "'";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();

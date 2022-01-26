@@ -5,6 +5,7 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 
@@ -20,10 +21,10 @@ public class Products_Form extends javax.swing.JPanel {
     public Products_Form() {
         initComponents();
     }
-    public void fillForm(String id,String actif){
+    public void fillForm(String actif){
+        
         if(MainFrame.action_Panel1.edit){
-            
-        }else{
+            String id=MainFrame.consultation_Panel1.Selected_ID();
             DefaultListModel l = Sql.SelectProduit(actif, id);
             codeTXt.setText(id);
             designation.setText(l.getElementAt(2).toString());
@@ -31,6 +32,13 @@ public class Products_Form extends javax.swing.JPanel {
             ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText(l.getElementAt(4).toString());
             SeuilTxt.setText(l.getElementAt(5).toString());
             TypeTxt.setText(l.getElementAt(6).toString());
+        }else{
+            codeTXt.setText("");
+            designation.setText("");
+            QteTxt.setText("");
+            ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText("");
+            SeuilTxt.setText("");
+            TypeTxt.setText("");
         }
     }
     /**
@@ -69,7 +77,7 @@ public class Products_Form extends javax.swing.JPanel {
 
         jLabel5.setText("Categorie");
 
-        CategorieComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CategorieComboBox.setModel(mCombo);
 
         Clear_button.setText("Clear");
 
@@ -157,8 +165,7 @@ public class Products_Form extends javax.swing.JPanel {
                     .addComponent(Submit_button)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
+    public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> CategorieComboBox;
     public javax.swing.JButton Clear_button;
