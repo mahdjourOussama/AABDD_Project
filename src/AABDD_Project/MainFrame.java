@@ -31,6 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
         Container.revalidate();
         action_Panel1.Consultation_Container.repaint();
         action_Panel1.Consultation_Container.revalidate();
+        consultation_Panel1.refresh();
     }
     /**
      * Creates new form NewJFrame
@@ -49,19 +50,18 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         user3_Menu1 = new AABDD_Project.User3_Menu();
-        Log_in = new AABDD_Project.LogIn_Panel();
         consultation_Panel1 = new AABDD_Project.Consultation_Panel();
         user1_Menu1 = new AABDD_Project.User1_Menu();
-        Container = new javax.swing.JPanel();
-        action_Panel1 = new AABDD_Project.Action_Panel();
         user2_Menu1 = new AABDD_Project.User2_Menu();
+        action_Panel1 = new AABDD_Project.Action_Panel();
+        Container = new javax.swing.JPanel();
+        Log_in = new AABDD_Project.LogIn_Panel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 400));
 
         Container.setLayout(new java.awt.BorderLayout());
-        Container.add(action_Panel1, java.awt.BorderLayout.CENTER);
-        Container.add(user2_Menu1, java.awt.BorderLayout.LINE_START);
+        Container.add(Log_in, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,7 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static boolean action=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel Container;
-    public AABDD_Project.LogIn_Panel Log_in;
+    public static AABDD_Project.LogIn_Panel Log_in;
     public static AABDD_Project.Action_Panel action_Panel1;
     public static AABDD_Project.Consultation_Panel consultation_Panel1;
     public static AABDD_Project.User1_Menu user1_Menu1;

@@ -175,26 +175,33 @@ create materialized view line_livraison refresh on commit as
   where
    produit.Code_PRO=  RENFERMER.Code_PRO ;
 create materialized view full_produit refresh on commit as
-select p.code_pro , p.designation , p.qte_stock,p.seuil,p.type_pro, cat.categorie 
-from produit p , categorie cat 
-where p.num_cat = cat.num_cat ;
+    select p.code_pro , p.designation , p.date_stock,p.qte_stock,p.seuil,p.type_pro, cat.categorie ,p.active
+    from produit p , categorie cat 
+    where p.num_cat = cat.num_cat ;
 create materialized view full_command refresh on commit as
-select cmd.num_bco , cmd.date_com , f.nom_fournisseur 
-from commande cmd , fournisseur f 
-where cmd.code_fournisseur = f.code_fournisseur ;
+    select cmd.num_bco , cmd.date_com , f.nom_fournisseur, cmd.active
+    from commande cmd , fournisseur f 
+    where cmd.code_fournisseur = f.code_fournisseur ;
 create materialized view full_employe refresh on commit as
-select emp.code_emp ,emp.nom_emp ,emp.prenom_emp,
-emp.grade_emp,emp.fonction, dep.intitule_dep
-from departement dep , employe emp 
-where dep.code_dep = emp.code_dep ;
+    select emp.code_emp ,emp.nom_emp ,emp.prenom_emp,
+    emp.grade_emp,emp.fonction, dep.intitule_dep,emp.active
+    from departement dep , employe emp 
+    where dep.code_dep = emp.code_dep ;
+   
+    drop materialized view full_produit;
+    select* from line_affectation;
 /*--inserting test subject into database--*/
 insert into prevliage values (1,'user1','user1');
 insert into prevliage values (2,'user2','user2');
 insert into prevliage values (3,'user3','user3');
 insert into categorie values(1,'ous');
 insert into Departement values(1,'department informatique','boumdjoud','amel');
-insert into employe values(1,'mahdjour','oussama','enginner','information system enginner',1);
+insert into employe values(1,'mahdjour','oussama','enginner','information system enginner',1,1);
+insert into employe values(2,'ok','oki','enginner','information system enginner',1,1);
+insert into employe values(3,'o','k','enginner','information system enginner',1,1);
 insert into accounts values(1,'ous','ous',1);
+insert into accounts values(2,'oki','oki',2,1);
+insert into accounts values(3,'k','k',3,1);
 insert into produit values(1,'ous',2,'12/may/2021',3,'oki',1);
 insert into fournisseur values (1,'oussama',11,21,1);
 commit;

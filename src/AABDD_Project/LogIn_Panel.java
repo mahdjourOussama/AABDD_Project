@@ -7,6 +7,7 @@ package AABDD_Project;
 
 import java.awt.BorderLayout;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -101,27 +102,24 @@ public class LogIn_Panel extends javax.swing.JPanel {
         int priv =Sql.test_user_priv(username, password);
         if(priv==1){
             MainFrame.Container.removeAll();
-            MainFrame.Container.repaint();
-            MainFrame.Container.revalidate();
             MainFrame.Container.add(MainFrame.user1_Menu1,BorderLayout.WEST);
         }else if(priv==2){
             MainFrame.Container.removeAll();
-            MainFrame.Container.repaint();
-            MainFrame.Container.revalidate();
             MainFrame.Container.add(MainFrame.user2_Menu1,BorderLayout.WEST);
         }else if(priv==3){
             MainFrame.Container.removeAll();
-            MainFrame.Container.repaint();
-            MainFrame.Container.revalidate();
             MainFrame.Container.add(MainFrame.user3_Menu1,BorderLayout.WEST);
+        }else {
+            JOptionPane.showMessageDialog(null, "user invalide");
         }
+        MainFrame.refrechFrame();
     }//GEN-LAST:event_LogInButtonActionPerformed
     public String username="",password="";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogInButton;
-    private javax.swing.JPasswordField PasswordField;
-    private javax.swing.JTextField UsernameField;
+    public javax.swing.JPasswordField PasswordField;
+    public javax.swing.JTextField UsernameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

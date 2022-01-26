@@ -157,7 +157,7 @@ public static int test_user_priv(String username,String password){
             tab.removeRow(0);
         }
 
-      String sql ="select * from produit where  active= '"+active+"'";
+      String sql ="select * from full_produit where  active= '"+active+"'";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
@@ -168,7 +168,7 @@ public static int test_user_priv(String username,String password){
                 Date_stock=rs.getString("Date_stock"),
                seuil=rs.getString("seuil"),
                 type=rs.getString("type_pro"),
-                num_cat=rs.getString("num_cat");
+                num_cat=rs.getString("categorie");
 
 
             tab.addRow(new Object[]{code_prod,Designation,Qte_stock,Date_stock,seuil,type,num_cat});    
@@ -303,7 +303,7 @@ public static int test_user_priv(String username,String password){
             tab.removeRow(0);
         }
 
-      String sql ="select * from Employe where  active= "+active+"";
+      String sql ="select * from full_employe where  active= "+active+"";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
@@ -313,9 +313,7 @@ public static int test_user_priv(String username,String password){
                 prenom_emp=rs.getString("prenom_emp"),
                 grade_emp=rs.getString("grade_emp"),
                function=rs.getString("fonction"),
-                code_dep=rs.getString("code_dep");
-
-
+                code_dep=rs.getString("intitule_dep");
             tab.addRow(new Object[]{code_emp,nom_emp,prenom_emp,grade_emp,function,code_dep});    
       }
       } catch (Exception e) {
@@ -598,6 +596,75 @@ public static int test_user_priv(String username,String password){
 
             tab.addRow(new Object[]{code_dep,Intitule_dep,nom_chef,prenom_chef});    
       }
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+//============================//END OF THE Methode//============================
+//============================//START OF THE Methode//==========================
+      public static void fillline_livraisonTable(JTable table,String active){
+        ResultSet rs = null;
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+
+      String sql ="select * from line_livraison where  `active`= '"+active+"'";
+     try {
+        pst = conn.prepareStatement(sql);
+        rs=pst.executeQuery(sql); 
+      while(rs.next()){
+         String Num_bsortir =rs.getString("Num_cammande"),
+                Qte=rs.getString("Qte"),
+                product_name=rs.getString("product_name");
+
+
+            tab.addRow(new Object[]{Num_bsortir,Qte,product_name});    
+      }
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+//============================//END OF THE Methode//============================   
+//============================//START OF THE Methode//==========================
+       public static void fillline_affectationTable(JTable table,String active){
+        ResultSet rs = null;
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+
+      String sql ="select * from line_affectation where  `active`= '"+active+"'";
+     try {
+        pst = conn.prepareStatement(sql);
+        rs=pst.executeQuery(sql); 
+      while(rs.next()){
+         String Num_cammande =rs.getString("Num_cammande"),
+                Qte=rs.getString("qte"),
+                product_name=rs.getString("product_name");
+
+
+            tab.addRow(new Object[]{Num_cammande,Qte,product_name});    
+      }
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+//============================//END OF THE Methode//============================
+//============================//START OF THE Methode//==========================
+       public static void alert_stock(String product){
+        ResultSet rs = null;
+        String sql ="select * from produit where  code_pro= '"+product+"'";
+     try {
+        pst = conn.prepareStatement(sql);
+        rs=pst.executeQuery(sql); 
+        rs.next();
+        int qte=rs.getInt("Qte_stock");
+        if (qte<=0){
+            JOptionPane.showMessageDialog(null, "the stock for the product :"+product +" is  "+qte);
+        }
       } catch (Exception e) {
           e.printStackTrace();
       }

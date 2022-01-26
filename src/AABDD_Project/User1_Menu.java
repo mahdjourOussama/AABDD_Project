@@ -55,6 +55,11 @@ public class User1_Menu extends javax.swing.JPanel {
         });
 
         Log_out_button2.setText("Log Out");
+        Log_out_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Log_out_button2ActionPerformed(evt);
+            }
+        });
 
         fournisseur_button.setText("Fournisseur");
         fournisseur_button.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +181,14 @@ public class User1_Menu extends javax.swing.JPanel {
         MainFrame.action=true;
         MainFrame.check_prev();
     }//GEN-LAST:event_Sortie_buttonActionPerformed
+
+    private void Log_out_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Log_out_button2ActionPerformed
+        MainFrame.Container.removeAll();
+        MainFrame.Container.add(MainFrame.Log_in);
+        MainFrame.refrechFrame();
+        MainFrame.Log_in.PasswordField.setText("");
+        MainFrame.Log_in.UsernameField.setText("");
+    }//GEN-LAST:event_Log_out_button2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -53,6 +53,11 @@ public class User2_Menu extends javax.swing.JPanel {
         });
 
         Log_out_button2.setText("Log Out");
+        Log_out_button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Log_out_button2ActionPerformed(evt);
+            }
+        });
 
         sortie_button.setText("sortie");
         sortie_button.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +126,7 @@ public class User2_Menu extends javax.swing.JPanel {
     }//GEN-LAST:event_Employe_buttonActionPerformed
 
     private void affectation_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_affectation_buttonActionPerformed
-        MainFrame.consultation_Panel1.table="affectaion";
+        MainFrame.consultation_Panel1.table="affectation";
         MainFrame.consultation_Panel1.fillTable();
         MainFrame.action=true;
         MainFrame.check_prev();
@@ -140,6 +145,14 @@ public class User2_Menu extends javax.swing.JPanel {
         MainFrame.action=false;
         MainFrame.check_prev();
     }//GEN-LAST:event_produit_buttonActionPerformed
+
+    private void Log_out_button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Log_out_button2ActionPerformed
+        MainFrame.Container.removeAll();
+        MainFrame.Container.add(MainFrame.Log_in);
+        MainFrame.refrechFrame();
+        MainFrame.Log_in.PasswordField.setText("");
+        MainFrame.Log_in.UsernameField.setText("");
+    }//GEN-LAST:event_Log_out_button2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

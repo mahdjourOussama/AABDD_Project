@@ -72,6 +72,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Log Out"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Log_out_button2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="fourniseur_button">
       <Properties>

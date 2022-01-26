@@ -13,7 +13,13 @@ import static AABDD_Project.Consultation_Panel.table;
  */
 public class Affectation_Table extends javax.swing.JPanel {
     public void fillTable(boolean active){
-        
+        String active_stat= "1";
+        if (active){
+            active_stat="1";
+        }else {
+            active_stat="0";
+        }
+        Sql.fillline_affectationTable(Affectation_Table, active_stat);
     }
     /**
      * Creates new form Departments_Panel
@@ -42,11 +48,11 @@ public class Affectation_Table extends javax.swing.JPanel {
 
             },
             new String [] {
-                "code", "date", "code emp", "empl name"
+                "code", "date", "empl name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -58,7 +64,6 @@ public class Affectation_Table extends javax.swing.JPanel {
             Affectation_Table.getColumnModel().getColumn(0).setResizable(false);
             Affectation_Table.getColumnModel().getColumn(1).setResizable(false);
             Affectation_Table.getColumnModel().getColumn(2).setResizable(false);
-            Affectation_Table.getColumnModel().getColumn(3).setResizable(false);
         }
 
         Detailed.setText("Detaile");

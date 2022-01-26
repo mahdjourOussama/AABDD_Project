@@ -43,11 +43,11 @@ public class Fourniseur_Table extends javax.swing.JPanel {
 
             },
             new String [] {
-                "code ", "first name", "famil name", "Num tel"
+                "code ", "first name", "num compt", "Num tel"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -57,6 +57,7 @@ public class Fourniseur_Table extends javax.swing.JPanel {
         jScrollPane2.setViewportView(fournisseur_Table);
         if (fournisseur_Table.getColumnModel().getColumnCount() > 0) {
             fournisseur_Table.getColumnModel().getColumn(0).setResizable(false);
+            fournisseur_Table.getColumnModel().getColumn(1).setResizable(false);
             fournisseur_Table.getColumnModel().getColumn(2).setResizable(false);
             fournisseur_Table.getColumnModel().getColumn(3).setResizable(false);
         }
