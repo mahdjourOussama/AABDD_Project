@@ -9,12 +9,12 @@ package AABDD_Project;
  *
  * @author mahdj
  */
-public class Fournisseur_Table extends javax.swing.JPanel {
+public class Fourniseur_Table extends javax.swing.JPanel {
 
     /**
      * Creates new form Departments_Panel
      */
-    public Fournisseur_Table() {
+    public Fourniseur_Table() {
         initComponents();
     }
     public void fillTable(boolean active){

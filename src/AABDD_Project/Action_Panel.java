@@ -5,7 +5,6 @@
  */
 package AABDD_Project;
 
-import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,35 +19,28 @@ public class Action_Panel extends javax.swing.JPanel {
     public Action_Panel() {
         initComponents();
     }
-    public void fillPopUp(boolean delete){
-        table=MainFrame.consultation_Panel1.table;
-        container.removeAll();
+    public void delete(boolean delete){
         if (table.equalsIgnoreCase("produit")){
-           container.add(products_Form1,BorderLayout.CENTER);
+           Sql.DeleteFromProduit(table);
         }else if (table.equalsIgnoreCase("affectation")){
-            container.add(affectation_Form1,BorderLayout.CENTER);
+            
         }else if (table.equalsIgnoreCase("command")){
-            container.add(command_Form1,BorderLayout.CENTER);
+            
         }else if (table.equalsIgnoreCase("department")){
-            container.add(departments_Form1,BorderLayout.CENTER);
+            
         }else if (table.equalsIgnoreCase("employe")){
-            container.add(employee_Form1,BorderLayout.CENTER);
+            
         }else if (table.equalsIgnoreCase("fournisseur")){
-            container.add(fournisseur_form1,BorderLayout.CENTER);
+            
         }else if (table.equalsIgnoreCase("sortie")){
-            container.add(sortie_Form1,BorderLayout.CENTER);
+            
         }else if (table.equalsIgnoreCase("livraison")){
-            container.add(livraison_Form1,BorderLayout.CENTER);
+            
         }else if (table.equalsIgnoreCase("categorie")){
-           container.add(cat_Form1,BorderLayout.CENTER);
+           
         }else {
             JOptionPane.showMessageDialog(null, "error dans le type de table");
         }
-        container.repaint();
-        container.revalidate();
-        PopUp.setLocationRelativeTo(null);
-        PopUp.setVisible(true);
-        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,17 +51,7 @@ public class Action_Panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PopUp = new javax.swing.JDialog();
-        container = new javax.swing.JPanel();
-        cat_Form1 = new AABDD_Project.Cat_Form();
-        employee_Form1 = new AABDD_Project.Employee_Form();
-        fournisseur_form1 = new AABDD_Project.Fournisseur_Form();
-        products_Form1 = new AABDD_Project.Products_Form();
-        sortie_Form1 = new AABDD_Project.Sortie_Form();
-        affectation_Form1 = new AABDD_Project.Affectation_Form();
-        command_Form1 = new AABDD_Project.Command_Form();
-        livraison_Form1 = new AABDD_Project.Livraison_Form();
-        departments_Form1 = new AABDD_Project.Departments_Form();
+        jDialog1 = new javax.swing.JDialog();
         ADD = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
@@ -77,20 +59,15 @@ public class Action_Panel extends javax.swing.JPanel {
         Deleted_Checkbox = new javax.swing.JCheckBox();
         Consultation_Container = new javax.swing.JPanel();
 
-        PopUp.setBackground(new java.awt.Color(0, 204, 204));
-        PopUp.setMinimumSize(new java.awt.Dimension(400, 400));
-
-        container.setLayout(new java.awt.BorderLayout());
-
-        javax.swing.GroupLayout PopUpLayout = new javax.swing.GroupLayout(PopUp.getContentPane());
-        PopUp.getContentPane().setLayout(PopUpLayout);
-        PopUpLayout.setHorizontalGroup(
-            PopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
-        PopUpLayout.setVerticalGroup(
-            PopUpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         ADD.setText("ADD");
@@ -163,12 +140,10 @@ public class Action_Panel extends javax.swing.JPanel {
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
         edit=true;
-        fillPopUp(edit);
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
         edit=false;
-        fillPopUp(edit);
     }//GEN-LAST:event_ADDActionPerformed
 
     private void Deleted_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Deleted_CheckboxActionPerformed
@@ -238,18 +213,8 @@ public class Action_Panel extends javax.swing.JPanel {
     public javax.swing.JPanel Consultation_Container;
     private javax.swing.JButton Delete;
     private javax.swing.JCheckBox Deleted_Checkbox;
-    public static javax.swing.JDialog PopUp;
     private javax.swing.JButton Restore;
     private javax.swing.JButton Update;
-    private AABDD_Project.Affectation_Form affectation_Form1;
-    private AABDD_Project.Cat_Form cat_Form1;
-    private AABDD_Project.Command_Form command_Form1;
-    private javax.swing.JPanel container;
-    private AABDD_Project.Departments_Form departments_Form1;
-    private AABDD_Project.Employee_Form employee_Form1;
-    private AABDD_Project.Fournisseur_Form fournisseur_form1;
-    private AABDD_Project.Livraison_Form livraison_Form1;
-    private AABDD_Project.Products_Form products_Form1;
-    private AABDD_Project.Sortie_Form sortie_Form1;
+    public static javax.swing.JDialog jDialog1;
     // End of variables declaration//GEN-END:variables
 }

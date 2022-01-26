@@ -101,7 +101,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
 
         departments_Table1 = new AABDD_Project.Departments_Table();
         employee_Table1 = new AABDD_Project.Employee_Table();
-        fourniseur_Table1 = new AABDD_Project.Fournisseur_Table();
+        fourniseur_Table1 = new AABDD_Project.Fourniseur_Table();
         products_Table1 = new AABDD_Project.Products_Table();
         affectation_Table1 = new AABDD_Project.Affectation_Table();
         command_Table1 = new AABDD_Project.Command_Table();
@@ -155,7 +155,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
     public static AABDD_Project.Command_Table command_Table1;
     public static AABDD_Project.Departments_Table departments_Table1;
     public static AABDD_Project.Employee_Table employee_Table1;
-    public static AABDD_Project.Fournisseur_Table fourniseur_Table1;
+    public static AABDD_Project.Fourniseur_Table fourniseur_Table1;
     public static javax.swing.JButton jButton1;
     public static AABDD_Project.Livraison_Table livraison_Table1;
     public static AABDD_Project.Products_Table products_Table1;
