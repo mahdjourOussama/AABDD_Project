@@ -9,12 +9,12 @@ package AABDD_Project;
  *
  * @author mahdj
  */
-public class cat_Table extends javax.swing.JPanel {
+public class Cat_Table extends javax.swing.JPanel {
 
     /**
      * Creates new form Departments_Panel
      */
-    public cat_Table() {
+    public Cat_Table() {
         initComponents();
     }
     public void fillTable(boolean active){

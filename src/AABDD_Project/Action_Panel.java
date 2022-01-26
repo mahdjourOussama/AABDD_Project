@@ -5,6 +5,8 @@
  */
 package AABDD_Project;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mahdj
@@ -17,7 +19,29 @@ public class Action_Panel extends javax.swing.JPanel {
     public Action_Panel() {
         initComponents();
     }
-
+    public void delete(boolean delete){
+        if (table.equalsIgnoreCase("produit")){
+           Sql.DeleteFromProduit(table);
+        }else if (table.equalsIgnoreCase("affectation")){
+            
+        }else if (table.equalsIgnoreCase("command")){
+            
+        }else if (table.equalsIgnoreCase("department")){
+            
+        }else if (table.equalsIgnoreCase("employe")){
+            
+        }else if (table.equalsIgnoreCase("fournisseur")){
+            
+        }else if (table.equalsIgnoreCase("sortie")){
+            
+        }else if (table.equalsIgnoreCase("livraison")){
+            
+        }else if (table.equalsIgnoreCase("categorie")){
+           
+        }else {
+            JOptionPane.showMessageDialog(null, "error dans le type de table");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +71,11 @@ public class Action_Panel extends javax.swing.JPanel {
         );
 
         ADD.setText("ADD");
+        ADD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ADDActionPerformed(evt);
+            }
+        });
 
         Update.setText("Update");
         Update.addActionListener(new java.awt.event.ActionListener() {
@@ -56,11 +85,26 @@ public class Action_Panel extends javax.swing.JPanel {
         });
 
         Delete.setText("Delete");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteActionPerformed(evt);
+            }
+        });
 
         Restore.setText("Restore");
+        Restore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestoreActionPerformed(evt);
+            }
+        });
 
         Deleted_Checkbox.setText("Deleted");
         Deleted_Checkbox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Deleted_Checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Deleted_CheckboxActionPerformed(evt);
+            }
+        });
 
         Consultation_Container.setLayout(new java.awt.BorderLayout());
 
@@ -95,10 +139,75 @@ public class Action_Panel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
-        // TODO add your handling code here:
+        edit=true;
     }//GEN-LAST:event_UpdateActionPerformed
+
+    private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
+        edit=false;
+    }//GEN-LAST:event_ADDActionPerformed
+
+    private void Deleted_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Deleted_CheckboxActionPerformed
+        active=!Deleted_Checkbox.isSelected();
+        MainFrame.consultation_Panel1.active=active;
+        MainFrame.consultation_Panel1.fillTable();
+        
+    }//GEN-LAST:event_Deleted_CheckboxActionPerformed
+
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        table=MainFrame.consultation_Panel1.table;
+        String ID=MainFrame.consultation_Panel1.Selected_ID();
+        if (table.equalsIgnoreCase("produit")){
+            System.out.println(ID);
+           Sql.DeleteFromProduit(ID);
+        }else if (table.equalsIgnoreCase("affectation")){
+            
+        }else if (table.equalsIgnoreCase("command")){
+            
+        }else if (table.equalsIgnoreCase("department")){
+            Sql.DeleteFromDepartement(ID);
+        }else if (table.equalsIgnoreCase("employe")){
+            Sql.DeleteFromEmploye(ID);
+        }else if (table.equalsIgnoreCase("fournisseur")){
+            Sql.DeleteFromFournisseur(ID);
+        }else if (table.equalsIgnoreCase("sortie")){
+            
+        }else if (table.equalsIgnoreCase("livraison")){
+            
+        }else if (table.equalsIgnoreCase("categorie")){
+           
+        }else {
+            JOptionPane.showMessageDialog(null, "error dans le type de table");
+        }
+    }//GEN-LAST:event_DeleteActionPerformed
+
+    private void RestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreActionPerformed
+        table=MainFrame.consultation_Panel1.table;
+        String ID=MainFrame.consultation_Panel1.Selected_ID();
+        if (table.equalsIgnoreCase("produit")){
+            System.out.println(ID);
+           Sql.RestoreFromProduit(ID);
+        }else if (table.equalsIgnoreCase("affectation")){
+            
+        }else if (table.equalsIgnoreCase("command")){
+            
+        }else if (table.equalsIgnoreCase("department")){
+            Sql.RestoreFromDepartement(ID);
+        }else if (table.equalsIgnoreCase("employe")){
+            Sql.RestoreFromEmploye(ID);
+        }else if (table.equalsIgnoreCase("fournisseur")){
+            Sql.RestoreFromFournisseur(ID);
+        }else if (table.equalsIgnoreCase("sortie")){
+            
+        }else if (table.equalsIgnoreCase("livraison")){
+            
+        }else if (table.equalsIgnoreCase("categorie")){
+           
+        }else {
+            JOptionPane.showMessageDialog(null, "error dans le type de table");
+        }
+    }//GEN-LAST:event_RestoreActionPerformed
     public static String table ="";
-    public static boolean active=true;
+    public static boolean active=true,edit=false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADD;
     public javax.swing.JPanel Consultation_Container;

@@ -80,7 +80,7 @@ public static int test_user_priv(String username,String password){
      * @param code_prod
      */
     public static void DeleteFromProduit(String code_prod) {
-        String sql = "UPDATE Produit SET Active= 0 WHERE   code_prod ='" + code_prod + "';";
+        String sql = "UPDATE Produit SET active =0 WHERE   code_pro ='1';  ";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -99,7 +99,7 @@ public static int test_user_priv(String username,String password){
      * @param code_prod
      */
     public static void RestoreFromProduit(String code_prod) {
-        String sql = "UPDATE Produit set Active= 1 WHERE  code_prod ='" + code_prod + "';";
+        String sql = "UPDATE Produit set Active= 1 WHERE  code_pro =" + code_prod + ";";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -636,7 +636,7 @@ public static int test_user_priv(String username,String password){
             tab.removeRow(0);
         }
 
-      String sql ="select * from line_affectation where  `active`= '"+active+"'";
+      String sql ="select * from line_affectation where  active= '"+active+"'";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 

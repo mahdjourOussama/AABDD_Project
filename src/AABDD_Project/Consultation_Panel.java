@@ -12,7 +12,31 @@ import javax.swing.JOptionPane;
  *
  * @author mahdj
  */
+
 public class Consultation_Panel extends javax.swing.JPanel {
+    public String Selected_ID(){
+        String id="";
+        if (table.equalsIgnoreCase("produit")){
+            id=Methode.get_Selected_ID(products_Table1.Product_table);
+        }else if (table.equalsIgnoreCase("affectation")){
+            id=Methode.get_Selected_ID(affectation_Table1.Affectation_Table);
+        }else if (table.equalsIgnoreCase("command")){
+            id=Methode.get_Selected_ID(command_Table1.Command_Table);
+        }else if (table.equalsIgnoreCase("department")){
+            id=Methode.get_Selected_ID(departments_Table1.Departments_Table);
+        }else if (table.equalsIgnoreCase("employe")){
+            id=Methode.get_Selected_ID(employee_Table1.Employee_Table);
+        }else if (table.equalsIgnoreCase("fournisseur")){
+            id=Methode.get_Selected_ID(fourniseur_Table1.fournisseur_Table);
+        }else if (table.equalsIgnoreCase("sortie")){
+            id=Methode.get_Selected_ID(sortie_Table1.Sortie_Table);
+        }else if (table.equalsIgnoreCase("livraison")){
+            id=Methode.get_Selected_ID(livraison_Table1.Laivraison_Table);
+        }else if (table.equalsIgnoreCase("categorie")){
+            id=Methode.get_Selected_ID(cat_Table1.categorie_Table);
+        }
+        return id;
+    }   
     public void fillTable(){
         if (table.equalsIgnoreCase("produit")){
             Table_Container.removeAll();
@@ -82,8 +106,8 @@ public class Consultation_Panel extends javax.swing.JPanel {
         affectation_Table1 = new AABDD_Project.Affectation_Table();
         command_Table1 = new AABDD_Project.Command_Table();
         sortie_Table1 = new AABDD_Project.Sortie_Table();
-        livraison_Table1 = new AABDD_Project.livraison_Table();
-        cat_Table1 = new AABDD_Project.cat_Table();
+        livraison_Table1 = new AABDD_Project.Livraison_Table();
+        cat_Table1 = new AABDD_Project.Cat_Table();
         Searchfield = new javax.swing.JTextField();
         Table_Container = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -91,6 +115,11 @@ public class Consultation_Panel extends javax.swing.JPanel {
         Table_Container.setLayout(new java.awt.BorderLayout());
 
         jButton1.setText("Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,19 +141,23 @@ public class Consultation_Panel extends javax.swing.JPanel {
                 .addComponent(Table_Container, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        fillTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
     public static  String table="";
     public static boolean active=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField Searchfield;
     public static javax.swing.JPanel Table_Container;
     public static AABDD_Project.Affectation_Table affectation_Table1;
-    public static AABDD_Project.cat_Table cat_Table1;
+    public static AABDD_Project.Cat_Table cat_Table1;
     public static AABDD_Project.Command_Table command_Table1;
     public static AABDD_Project.Departments_Table departments_Table1;
     public static AABDD_Project.Employee_Table employee_Table1;
     public static AABDD_Project.Fourniseur_Table fourniseur_Table1;
     public static javax.swing.JButton jButton1;
-    public static AABDD_Project.livraison_Table livraison_Table1;
+    public static AABDD_Project.Livraison_Table livraison_Table1;
     public static AABDD_Project.Products_Table products_Table1;
     public static AABDD_Project.Sortie_Table sortie_Table1;
     // End of variables declaration//GEN-END:variables

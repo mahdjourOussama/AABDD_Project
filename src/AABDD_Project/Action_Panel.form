@@ -71,6 +71,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ADD"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ADDActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Update">
       <Properties>
@@ -84,17 +87,26 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Restore">
       <Properties>
         <Property name="text" type="java.lang.String" value="Restore"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RestoreActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="Deleted_Checkbox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Deleted"/>
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Deleted_CheckboxActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="Consultation_Container">
       <AuxValues>

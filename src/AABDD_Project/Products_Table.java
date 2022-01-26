@@ -43,7 +43,7 @@ public class Products_Table extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Designation", "Qte Stock", "categorie", "date stock", "type produit", "seuil", "Categorie"
+                "Code", "Designation", "Qte Stock", "date stock", "type produit", "seuil", "Categorie"
             }
         ) {
             boolean[] canEdit = new boolean [] {
