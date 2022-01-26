@@ -18,7 +18,7 @@ public class Cat_Table extends javax.swing.JPanel {
         initComponents();
     }
     public void fillTable(boolean active){
-        //ok
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.

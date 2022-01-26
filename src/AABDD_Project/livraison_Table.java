@@ -13,8 +13,6 @@ public class Livraison_Table extends javax.swing.JPanel {
 
     /**
      * Creates new form Departments_Panel
-     * hello
-     *
      */
     public Livraison_Table() {
         initComponents();
