@@ -9,14 +9,14 @@ package AABDD_Project;
  *
  * @author mahdj
  */
-public class Fournisseur_form extends javax.swing.JPanel {
+public class Fournisseur_Form extends javax.swing.JPanel {
     public void fillForm(String id){
         
     }
     /**
      * Creates new form Employee_form
      */
-    public Fournisseur_form() {
+    public Fournisseur_Form() {
         initComponents();
     }
 

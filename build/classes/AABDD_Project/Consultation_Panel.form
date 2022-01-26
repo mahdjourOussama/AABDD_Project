@@ -12,7 +12,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
     </Component>
-    <Component class="AABDD_Project.Fourniseur_Table" name="fourniseur_Table1">
+    <Component class="AABDD_Project.Fournisseur_Table" name="fourniseur_Table1">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
       </AuxValues>
