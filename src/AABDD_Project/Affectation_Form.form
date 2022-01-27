@@ -192,6 +192,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="DateTxt">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="dd/MMM/yyyy"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

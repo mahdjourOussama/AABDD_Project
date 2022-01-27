@@ -20,18 +20,21 @@ public class Products_Form extends javax.swing.JPanel {
      */
     public Products_Form() {
         initComponents();
+        
     }
     public void fillForm(String actif){
-        
+        idlist=Sql.fillComboBox(CategorieComboBox,"categorie","categorie", actif);
         if(MainFrame.action_Panel1.edit){
             String id=MainFrame.consultation_Panel1.Selected_ID();
             DefaultListModel l = Sql.SelectProduit(actif, id);
+            codeTXt.setEditable(false);
             codeTXt.setText(id);
-            designation.setText(l.getElementAt(2).toString());
-            QteTxt.setText(l.getElementAt(3).toString());
-            ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText(l.getElementAt(4).toString());
-            SeuilTxt.setText(l.getElementAt(5).toString());
-            TypeTxt.setText(l.getElementAt(6).toString());
+            designation.setText(l.getElementAt(1).toString());
+            QteTxt.setText(l.getElementAt(2).toString());
+            ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText(l.getElementAt(3).toString());
+            SeuilTxt.setText(l.getElementAt(4).toString());
+            TypeTxt.setText(l.getElementAt(5).toString());
+            Submit_button.setText("Update");
         }else{
             codeTXt.setText("");
             designation.setText("");
@@ -39,6 +42,7 @@ public class Products_Form extends javax.swing.JPanel {
             ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText("");
             SeuilTxt.setText("");
             TypeTxt.setText("");
+            Submit_button.setText("ADD");
         }
     }
     /**
@@ -80,12 +84,24 @@ public class Products_Form extends javax.swing.JPanel {
         CategorieComboBox.setModel(mCombo);
 
         Clear_button.setText("Clear");
+        Clear_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clear_buttonActionPerformed(evt);
+            }
+        });
 
         Submit_button.setText("ADD");
+        Submit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Submit_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Type");
 
         jLabel7.setText("Seuil");
+
+        DateTxt.setDateFormatString("dd/MMM/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -165,7 +181,32 @@ public class Products_Form extends javax.swing.JPanel {
                     .addComponent(Submit_button)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Clear_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_buttonActionPerformed
+        codeTXt.setText("");
+            designation.setText("");
+            QteTxt.setText("");
+            ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText("");
+            SeuilTxt.setText("");
+            TypeTxt.setText("");
+    }//GEN-LAST:event_Clear_buttonActionPerformed
+
+    private void Submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit_buttonActionPerformed
+        String code=codeTXt.getText(),
+                name=designation.getText(),
+                qte=QteTxt.getText(),
+                date=((JTextField) DateTxt.getDateEditor().getUiComponent()).getText(),
+                seuil=SeuilTxt.getText(),
+                type=TypeTxt.getText(),
+                cat=idlist.getElementAt(CategorieComboBox.getSelectedIndex()).toString();
+        if(MainFrame.action_Panel1.edit){
+            Sql.UpdateProduit(code, name, qte, date, seuil, type, cat);
+        }else {
+            Sql.InsertToProduit(code, name, qte, date, seuil, type, cat);
+        }
+    }//GEN-LAST:event_Submit_buttonActionPerformed
     public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
+    public DefaultListModel idlist =new DefaultListModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> CategorieComboBox;
     public javax.swing.JButton Clear_button;

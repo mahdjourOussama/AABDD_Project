@@ -38,6 +38,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
         return id;
     }   
     public void fillTable(){
+        Sql.commit();
         if (table.equalsIgnoreCase("produit")){
             Table_Container.removeAll();
             Table_Container.add(products_Table1,BorderLayout.CENTER); 
@@ -78,6 +79,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "error dans le type de table");
         }
         refresh();
+        
     }
     public void refresh(){
         Table_Container.repaint();
@@ -112,6 +114,12 @@ public class Consultation_Panel extends javax.swing.JPanel {
         Table_Container = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
+        Searchfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SearchfieldKeyReleased(evt);
+            }
+        });
+
         Table_Container.setLayout(new java.awt.BorderLayout());
 
         jButton1.setText("Refresh");
@@ -145,6 +153,32 @@ public class Consultation_Panel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         fillTable();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SearchfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SearchfieldKeyReleased
+        
+        if (table.equalsIgnoreCase("produit")){
+            Methode.SearchInTheTable(products_Table1.Product_table, Searchfield);
+        }else if (table.equalsIgnoreCase("affectation")){
+           Methode.SearchInTheTable(affectation_Table1.Affectation_Table, Searchfield);
+        }else if (table.equalsIgnoreCase("command")){
+            Methode.SearchInTheTable(command_Table1.Command_Table, Searchfield);
+        }else if (table.equalsIgnoreCase("department")){
+            Methode.SearchInTheTable(departments_Table1.Departments_Table, Searchfield);
+        }else if (table.equalsIgnoreCase("employe")){
+            Methode.SearchInTheTable(employee_Table1.Employee_Table, Searchfield);
+        }else if (table.equalsIgnoreCase("fournisseur")){
+            Methode.SearchInTheTable(fourniseur_Table1.fournisseur_Table, Searchfield);
+        }else if (table.equalsIgnoreCase("sortie")){
+            Methode.SearchInTheTable(sortie_Table1.Sortie_Table, Searchfield);
+        }else if (table.equalsIgnoreCase("livraison")){
+            Methode.SearchInTheTable(livraison_Table1.Laivraison_Table, Searchfield);
+        }else if (table.equalsIgnoreCase("categorie")){
+           Methode.SearchInTheTable(cat_Table1.categorie_Table, Searchfield);
+        }else {
+            JOptionPane.showMessageDialog(null, "error dans le type de table");
+        }
+        refresh();
+    }//GEN-LAST:event_SearchfieldKeyReleased
     public static  String table="";
     public static boolean active=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables

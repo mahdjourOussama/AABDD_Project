@@ -5,6 +5,9 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author mahdj
@@ -17,8 +20,24 @@ public class Departments_Form extends javax.swing.JPanel {
     public Departments_Form() {
         initComponents();
     }
-    public void fillForm(String id){
-        
+    public void fillForm(String actif){
+        if(MainFrame.action_Panel1.edit){
+            id=MainFrame.consultation_Panel1.Selected_ID();
+            DefaultListModel l = Sql.SelectDepartement(actif, id);
+            IntutileTxt.setText(l.getElementAt(0).toString());
+            Nom_ChefTxt.setText(l.getElementAt(1).toString());
+            Prenom_ChefTxt.setText(l.getElementAt(2).toString());
+            Submit_button.setText("Update");
+        }else{
+            clear();
+        }
+    }
+    public void clear(){
+        Action_Panel.edit=false;
+        IntutileTxt.setText("");
+            Nom_ChefTxt.setText("");
+            Prenom_ChefTxt.setText("");
+            Submit_button.setText("ADD");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,8 +67,18 @@ public class Departments_Form extends javax.swing.JPanel {
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Clear_button.setText("Clear");
+        Clear_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clear_buttonActionPerformed(evt);
+            }
+        });
 
         Submit_button.setText("ADD");
+        Submit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Submit_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,7 +127,23 @@ public class Departments_Form extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit_buttonActionPerformed
+        String intu=IntutileTxt.getText(),
+                nom=Nom_ChefTxt.getText(),
+                pre=Prenom_ChefTxt.getText();
+        if (MainFrame.action_Panel1.edit){
+            Sql.UpdateDepartments(id, intu, nom, pre);
+        }else{
+            Sql.InsertToDepartement(intu, nom, pre);
+        }
+        Sql.commit();
+    }//GEN-LAST:event_Submit_buttonActionPerformed
 
+    private void Clear_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_buttonActionPerformed
+        clear();
+    }//GEN-LAST:event_Clear_buttonActionPerformed
+
+    public String id="";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Clear_button;
     public javax.swing.JTextField IntutileTxt;

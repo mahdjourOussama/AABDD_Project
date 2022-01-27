@@ -28,12 +28,15 @@ public class Action_Panel extends javax.swing.JPanel {
                 products_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("affectation")){
                  container.add(affectation_Form1,BorderLayout.CENTER);
+                 affectation_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("command")){
                  container.add(command_Form1,BorderLayout.CENTER);
              }else if (table.equalsIgnoreCase("department")){
                  container.add(departments_Form1,BorderLayout.CENTER);
+                 departments_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("employe")){
                  container.add(employee_Form1,BorderLayout.CENTER);
+                 employee_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("fournisseur")){
                  container.add(fournisseur_form1,BorderLayout.CENTER);
              }else if (table.equalsIgnoreCase("sortie")){
@@ -170,6 +173,7 @@ public class Action_Panel extends javax.swing.JPanel {
         }else {
             fillPopUp("0");
         }
+        MainFrame.consultation_Panel1.fillTable();
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
@@ -179,7 +183,7 @@ public class Action_Panel extends javax.swing.JPanel {
         }else {
             fillPopUp("0");
         }
-
+        MainFrame.consultation_Panel1.fillTable();
     }//GEN-LAST:event_ADDActionPerformed
 
     private void Deleted_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Deleted_CheckboxActionPerformed
@@ -195,9 +199,9 @@ public class Action_Panel extends javax.swing.JPanel {
         if (table.equalsIgnoreCase("produit")){
             Sql.DeleteFromProduit(ID);
         }else if (table.equalsIgnoreCase("affectation")){
-            
+            Sql.DeleteFromAffectation(ID);
         }else if (table.equalsIgnoreCase("command")){
-            
+            Sql.DeleteFromcommande(ID);
         }else if (table.equalsIgnoreCase("department")){
             Sql.DeleteFromDepartement(ID);
         }else if (table.equalsIgnoreCase("employe")){
@@ -205,27 +209,27 @@ public class Action_Panel extends javax.swing.JPanel {
         }else if (table.equalsIgnoreCase("fournisseur")){
             Sql.DeleteFromFournisseur(ID);
         }else if (table.equalsIgnoreCase("sortie")){
-            
+            Sql.DeleteFromsortie(ID);
         }else if (table.equalsIgnoreCase("livraison")){
-            
+            Sql.DeleteFromlivraison(ID);
         }else if (table.equalsIgnoreCase("categorie")){
-           
+           Sql.DeleteFromcat(ID);
         }else {
             JOptionPane.showMessageDialog(null, "error dans le type de table");
         }
-        MainFrame.consultation_Panel1.refresh();
+        MainFrame.consultation_Panel1.fillTable();
+        Sql.commit();
     }//GEN-LAST:event_DeleteActionPerformed
 
     private void RestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RestoreActionPerformed
         table=MainFrame.consultation_Panel1.table;
         String ID=MainFrame.consultation_Panel1.Selected_ID();
         if (table.equalsIgnoreCase("produit")){
-            System.out.println(ID);
            Sql.RestoreFromProduit(ID);
         }else if (table.equalsIgnoreCase("affectation")){
-            
+           Sql.RestoreFromAffectation(ID);
         }else if (table.equalsIgnoreCase("command")){
-            
+            Sql.RestoreFromcommande(ID);
         }else if (table.equalsIgnoreCase("department")){
             Sql.RestoreFromDepartement(ID);
         }else if (table.equalsIgnoreCase("employe")){
@@ -233,14 +237,16 @@ public class Action_Panel extends javax.swing.JPanel {
         }else if (table.equalsIgnoreCase("fournisseur")){
             Sql.RestoreFromFournisseur(ID);
         }else if (table.equalsIgnoreCase("sortie")){
-            
+            Sql.RestoreFromsortie(ID);
         }else if (table.equalsIgnoreCase("livraison")){
-            
+            Sql.RestoreFromlivraison(ID);
         }else if (table.equalsIgnoreCase("categorie")){
-           
+            Sql.RestoreFromcat(ID);
         }else {
             JOptionPane.showMessageDialog(null, "error dans le type de table");
         }
+        MainFrame.consultation_Panel1.fillTable();
+        Sql.commit();
     }//GEN-LAST:event_RestoreActionPerformed
     public static String table ="";
     public static boolean active=true,edit=false;

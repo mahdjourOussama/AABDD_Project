@@ -99,7 +99,8 @@ public class LogIn_Panel extends javax.swing.JPanel {
     private void LogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInButtonActionPerformed
         username=UsernameField.getText();
         password=PasswordField.getText();
-        int priv =Sql.test_user_priv(username, password);
+        if(!(password.isEmpty() && username.isEmpty())){
+            int priv =Sql.test_user_priv(username, password);
         if(priv==1){
             MainFrame.Container.removeAll();
             MainFrame.Container.add(MainFrame.user1_Menu1,BorderLayout.WEST);
@@ -111,6 +112,7 @@ public class LogIn_Panel extends javax.swing.JPanel {
             MainFrame.Container.add(MainFrame.user3_Menu1,BorderLayout.WEST);
         }else {
             JOptionPane.showMessageDialog(null, "user invalide");
+        }
         }
         MainFrame.refrechFrame();
     }//GEN-LAST:event_LogInButtonActionPerformed

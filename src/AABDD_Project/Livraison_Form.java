@@ -76,6 +76,8 @@ public class Livraison_Form extends javax.swing.JPanel {
 
         ADD.setText("ADD");
 
+        DateTxt.setDateFormatString("dd/MMM/yyyy");
+
         jLabel2.setText("Date");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

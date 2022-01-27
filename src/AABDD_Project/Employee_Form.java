@@ -20,8 +20,31 @@ public class Employee_Form extends javax.swing.JPanel {
     public Employee_Form() {
         initComponents();
     }
-    public void fillForm(String id){
-        
+    public void fillForm(String actif){
+        Sql.fillComboBox(DepartmentComboBox, "Departement", "2", actif);
+        if(MainFrame.action_Panel1.edit){
+            String id=MainFrame.consultation_Panel1.Selected_ID();
+            DefaultListModel l = Sql.SelectEmploye(actif, id);
+            CodeTxt.setText(id);
+            CodeTxt.setEditable(false);
+            NomTxt.setText(l.getElementAt(1).toString());
+            PrenomeTxt.setText(l.getElementAt(2).toString());
+            GradeTxt.setText(l.getElementAt(3).toString());
+            FonctionTxt.setText(l.getElementAt(4).toString());
+            Submit_button.setText("Update");
+        }else{
+            clear();
+        }
+    }
+    public void clear(){
+        CodeTxt.setText("");
+            CodeTxt.setEditable(true);
+            NomTxt.setText("");
+            PrenomeTxt.setText("");
+            GradeTxt.setText("");
+            FonctionTxt.setText("");
+            Submit_button.setText("ADD");
+        MainFrame.action_Panel1.edit=false;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +83,11 @@ public class Employee_Form extends javax.swing.JPanel {
         DepartmentComboBox.setModel(mCombo);
 
         Clear_button.setText("Clear");
+        Clear_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clear_buttonActionPerformed(evt);
+            }
+        });
 
         Submit_button.setText("ADD");
 
@@ -135,6 +163,10 @@ public class Employee_Form extends javax.swing.JPanel {
                     .addComponent(Submit_button)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Clear_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_buttonActionPerformed
+        clear();
+    }//GEN-LAST:event_Clear_buttonActionPerformed
     public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

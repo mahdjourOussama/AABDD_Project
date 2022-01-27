@@ -84,6 +84,8 @@ public class Command_Form extends javax.swing.JPanel {
 
         jLabel3.setText("Date");
 
+        DateTxt.setDateFormatString("dd/MMM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(

@@ -7,6 +7,7 @@ package AABDD_Project;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,7 +21,17 @@ public class Affectation_Form extends javax.swing.JPanel {
     public Affectation_Form() {
         initComponents();
     }
-
+    public void fillForm(String actif){
+        idlist=Sql.fillComboBox(Employe_Combobox,"employe","nom_emp", actif);
+        if(MainFrame.action_Panel1.edit){
+            String id=MainFrame.consultation_Panel1.Selected_ID();
+            DefaultListModel l = Sql.SelectProduit(actif, id);
+            
+        }else{
+            
+            Submit.setText("ADD");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,6 +94,8 @@ public class Affectation_Form extends javax.swing.JPanel {
         ADD.setText("ADD");
 
         jLabel3.setText("Date");
+
+        DateTxt.setDateFormatString("dd/MMM/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -147,7 +160,7 @@ public class Affectation_Form extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
-    public DefaultListModel mlist = new DefaultListModel();
+    public DefaultListModel mlist = new DefaultListModel(),idlist= new DefaultListModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADD;
     private javax.swing.JButton Clear;
