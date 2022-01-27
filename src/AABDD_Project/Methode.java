@@ -73,6 +73,23 @@ public class Methode {
   }
 //============================//END OF THE Methode//============================
 
+//============================//START OF THE Methode//==========================
+public static DefaultListModel addToLine(JTable table){
+                 DefaultTableModel model =(DefaultTableModel) table.getModel();
+            int selected =table.getSelectedRow(),colomn=table.getColumnCount();
+            DefaultListModel selectedValues=new DefaultListModel();
+            if (selected>-1) {
+                for (int i = 0; i < colomn; i++) {
+                    selectedValues.addElement(model.getValueAt(selected, i).toString());
+                }
+                return selectedValues;  
+            }else{
+             JOptionPane.showMessageDialog(null, "Please Select Item");
+             return selectedValues;
+            }
+                  
+    }
+//============================//END OF THE Methode//============================
 
 //============================//START OF THE Methode//==========================
 public static DefaultListModel getTableContent(JTable table){

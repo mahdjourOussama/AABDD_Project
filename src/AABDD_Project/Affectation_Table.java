@@ -6,6 +6,8 @@
 package AABDD_Project;
 
 import static AABDD_Project.Consultation_Panel.table;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,13 +15,13 @@ import static AABDD_Project.Consultation_Panel.table;
  */
 public class Affectation_Table extends javax.swing.JPanel {
     public void fillTable(boolean active){
-        String active_stat= "1";
+        
         if (active){
             active_stat="1";
         }else {
             active_stat="0";
         }
-        Sql.fillline_affectationTable(Affectation_Table, active_stat);
+        Sql.fillAffectationTable(Affectation_Table, active_stat);
     }
     /**
      * Creates new form Departments_Panel
@@ -48,7 +50,7 @@ public class Affectation_Table extends javax.swing.JPanel {
 
             },
             new String [] {
-                "code", "date", "empl name"
+                "code", "date", "employe"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -67,6 +69,11 @@ public class Affectation_Table extends javax.swing.JPanel {
         }
 
         Detailed.setText("Detaile");
+        Detailed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetailedActionPerformed(evt);
+            }
+        });
 
         Detailed_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,7 +118,14 @@ public class Affectation_Table extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private void DetailedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailedActionPerformed
+        Methode.ClearTable(Detailed_table);
+        DefaultListModel l= Methode.getTableContent(Affectation_Table);
+        selected=l.getElementAt(0).toString();
+        Sql.fillline_affectationTable(Detailed_table,active_stat ,selected);
+    }//GEN-LAST:event_DetailedActionPerformed
+    public  String selected="", active_stat= "1";;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable Affectation_Table;
     private javax.swing.JButton Detailed;

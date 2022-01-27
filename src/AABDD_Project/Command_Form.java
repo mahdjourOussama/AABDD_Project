@@ -7,6 +7,9 @@ package AABDD_Project;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,7 +23,43 @@ public class Command_Form extends javax.swing.JPanel {
     public Command_Form() {
         initComponents();
     }
+    public void fillForm(String actif){
+        idlist=Sql.fillComboBox(Employe_Combobox,"fournisseur","nom_fournisseur", actif);
+        produitId=Sql.FillList(mlist, "produit", actif, "designation");
 
+        if(MainFrame.action_Panel1.edit){
+            Methode.ClearTable(table);
+            String id=MainFrame.consultation_Panel1.Selected_ID();
+            Sql.fillline_commandeTable(table, actif, id);
+            ADD.setEnabled(false);
+            QteTxt.setEnabled(false);
+            Clear.setEnabled(false);
+            CodeTxt.setEditable(false);
+            Submit.setText("Update");
+            ProduitList.setEnabled(false);
+            DefaultListModel l =Sql.Selectcommande(actif, actif);
+            CodeTxt.setText(id);
+            ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText(l.getElementAt(0).toString());
+            int sel=idlist.indexOf(l.getElementAt(1));
+            Employe_Combobox.setSelectedIndex(sel);
+        }else{
+            clear();
+            CodeTxt.setEditable(true);
+            ProduitList.setEnabled(true);
+            ADD.setEnabled(true);
+            QteTxt.setEnabled(true);
+            Clear.setEnabled(true);
+        }
+    }
+   public void clear(){
+        Methode.ClearTable(table);
+        QteTxt.setText("");
+        CodeTxt.setText("");
+        Submit.setText("ADD");
+        CodeTxt.setText("");
+        ((JTextField) DateTxt.getDateEditor().getUiComponent()).setText("");
+        Employe_Combobox.setSelectedIndex(0);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +82,8 @@ public class Command_Form extends javax.swing.JPanel {
         ADD = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         DateTxt = new com.toedter.calendar.JDateChooser();
+        CodeTxt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Qte");
@@ -77,14 +118,26 @@ public class Command_Form extends javax.swing.JPanel {
         }
 
         Submit.setText("Submit");
+        Submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitActionPerformed(evt);
+            }
+        });
 
         Clear.setText("Clear");
 
         ADD.setText("ADD");
+        ADD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ADDActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Date");
 
         DateTxt.setDateFormatString("dd/MMM/yyyy");
+
+        jLabel4.setText("Code");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -112,15 +165,23 @@ public class Command_Form extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Employe_Combobox, 0, 362, Short.MAX_VALUE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(DateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CodeTxt))
+                            .addComponent(Employe_Combobox, 0, 307, Short.MAX_VALUE)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(DateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(CodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Employe_Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,11 +208,61 @@ public class Command_Form extends javax.swing.JPanel {
                     .addComponent(Clear)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ADDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADDActionPerformed
+        try {
+            int SelectedIndex=ProduitList.getSelectedIndex();
+        String ProduitName=ProduitList.getSelectedValue(),
+               Qte=QteTxt.getText(),
+               ProduitID=produitId.getElementAt(SelectedIndex).toString();
+            SelectedIDs.addElement(ProduitID);
+            DefaultTableModel tab=(DefaultTableModel)table.getModel();
+            tab.addRow(new Object[]{ProduitName,Qte});
+            QteTxt.setText("");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_ADDActionPerformed
+
+    private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
+         try {
+            DefaultTableModel tab= (DefaultTableModel)table.getModel();
+        int index_emp=Employe_Combobox.getSelectedIndex();
+        String employe=idlist.getElementAt(index_emp).toString(),
+                date=((JTextField) DateTxt.getDateEditor().getUiComponent()).getText(),
+                code=CodeTxt.getText();
+        if(Action_Panel.edit){
+            Sql.Updatecammande(code, date, employe);
+        }else{
+            Sql.InsertTocommande(code, date, employe);
+            Sql.commit();
+        
+            while(tab.getRowCount()>0){
+                String IDproduct=SelectedIDs.getElementAt(0).toString(),
+                   coef=tab.getValueAt(0, 1).toString();
+                Sql.insertIntoLine_Command(IDproduct,coef , code);
+                tab.removeRow(0);
+                SelectedIDs.removeElementAt(0);
+            }
+        }
+        
+        Sql.commit();
+        MainFrame.consultation_Panel1.fillTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+         clear();
+    }//GEN-LAST:event_SubmitActionPerformed
     public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
-    public DefaultListModel mlist = new DefaultListModel();
+    public DefaultListModel mlist = new DefaultListModel(),
+            idlist= new DefaultListModel(),
+            produitId= new DefaultListModel(),
+            SelectedIDs=new DefaultListModel();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADD;
     private javax.swing.JButton Clear;
+    private javax.swing.JTextField CodeTxt;
     private com.toedter.calendar.JDateChooser DateTxt;
     private javax.swing.JComboBox<String> Employe_Combobox;
     private javax.swing.JList<String> ProduitList;
@@ -160,6 +271,7 @@ public class Command_Form extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable table;

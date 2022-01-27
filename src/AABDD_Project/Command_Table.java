@@ -5,13 +5,20 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author mahdj
  */
 public class Command_Table extends javax.swing.JPanel {
     public void fillTable(boolean active){
-        
+        if (active){
+            active_stat="1";
+        }else {
+            active_stat="0";
+        }
+        Sql.fillCommandeTable(Command_Table, active_stat);
     }
     /**
      * Creates new form Departments_Panel
@@ -31,20 +38,20 @@ public class Command_Table extends javax.swing.JPanel {
 
         Employe_table = new javax.swing.JScrollPane();
         Command_Table = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        Detailed = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Detailed_table = new javax.swing.JTable();
 
         Command_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "code", "date", "code fournisseur", "name"
+                "code", "date", "fournisseur"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -56,12 +63,16 @@ public class Command_Table extends javax.swing.JPanel {
             Command_Table.getColumnModel().getColumn(0).setResizable(false);
             Command_Table.getColumnModel().getColumn(1).setResizable(false);
             Command_Table.getColumnModel().getColumn(2).setResizable(false);
-            Command_Table.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jButton1.setText("Expand");
+        Detailed.setText("Expand");
+        Detailed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetailedActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Detailed_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -77,10 +88,10 @@ public class Command_Table extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane2.setViewportView(Detailed_table);
+        if (Detailed_table.getColumnModel().getColumnCount() > 0) {
+            Detailed_table.getColumnModel().getColumn(0).setResizable(false);
+            Detailed_table.getColumnModel().getColumn(1).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -91,25 +102,33 @@ public class Command_Table extends javax.swing.JPanel {
                 .addComponent(Employe_table, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(Detailed, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Employe_table, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(Detailed)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void DetailedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailedActionPerformed
+        Methode.ClearTable(Detailed_table);
+        DefaultListModel l= Methode.getTableContent(Command_Table);
+        selected=l.getElementAt(0).toString();
+        Sql.fillline_commandeTable(Detailed_table,active_stat ,selected);
+    }//GEN-LAST:event_DetailedActionPerformed
+    public  String selected="", active_stat= "1";;
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable Command_Table;
+    private javax.swing.JButton Detailed;
+    private javax.swing.JTable Detailed_table;
     private javax.swing.JScrollPane Employe_table;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,13 @@ public class Cat_Table extends javax.swing.JPanel {
         initComponents();
     }
     public void fillTable(boolean active){
-        
+        String active_stat= "1";
+        if (active){
+            active_stat="1";
+        }else {
+            active_stat="0";
+        }
+        Sql.fillcatTable(categorie_Table, active_stat);
     }
     /**
      * This method is called from within the constructor to initialize the form.

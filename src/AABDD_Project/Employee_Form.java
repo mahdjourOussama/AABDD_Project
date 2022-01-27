@@ -21,7 +21,7 @@ public class Employee_Form extends javax.swing.JPanel {
         initComponents();
     }
     public void fillForm(String actif){
-        Sql.fillComboBox(DepartmentComboBox, "Departement", "2", actif);
+        idlist=Sql.fillComboBox(DepartmentComboBox, "Departement", "INTITULE_DEP", actif);
         if(MainFrame.action_Panel1.edit){
             String id=MainFrame.consultation_Panel1.Selected_ID();
             DefaultListModel l = Sql.SelectEmploye(actif, id);
@@ -31,6 +31,8 @@ public class Employee_Form extends javax.swing.JPanel {
             PrenomeTxt.setText(l.getElementAt(2).toString());
             GradeTxt.setText(l.getElementAt(3).toString());
             FonctionTxt.setText(l.getElementAt(4).toString());
+            int sel=idlist.indexOf(l.getElementAt(5));
+            DepartmentComboBox.setSelectedIndex(sel);
             Submit_button.setText("Update");
         }else{
             clear();
@@ -90,6 +92,11 @@ public class Employee_Form extends javax.swing.JPanel {
         });
 
         Submit_button.setText("ADD");
+        Submit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Submit_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Code");
 
@@ -167,8 +174,24 @@ public class Employee_Form extends javax.swing.JPanel {
     private void Clear_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_buttonActionPerformed
         clear();
     }//GEN-LAST:event_Clear_buttonActionPerformed
-    public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
 
+    private void Submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit_buttonActionPerformed
+        String code =CodeTxt.getText(),
+                nom=NomTxt.getText(),
+            pre=PrenomeTxt.getText(),
+            grade=GradeTxt.getText(),
+            fn=FonctionTxt.getText(),
+                id_dep=idlist.getElementAt(DepartmentComboBox.getSelectedIndex()).toString();
+        if(MainFrame.action_Panel1.edit){
+            Sql.UpdateEmployee(code, nom, pre, grade, fn, id_dep);
+        }else {
+            Sql.InsertToEmploye(code, nom, pre, grade, fn, id_dep);
+        }
+        MainFrame.consultation_Panel1.fillTable();
+        Sql.commit();
+    }//GEN-LAST:event_Submit_buttonActionPerformed
+    public DefaultComboBoxModel mCombo = new DefaultComboBoxModel();
+    public DefaultListModel idlist=new DefaultListModel();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton Clear_button;
     public javax.swing.JTextField CodeTxt;

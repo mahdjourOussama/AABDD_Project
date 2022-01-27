@@ -31,6 +31,7 @@ public class Action_Panel extends javax.swing.JPanel {
                  affectation_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("command")){
                  container.add(command_Form1,BorderLayout.CENTER);
+                 command_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("department")){
                  container.add(departments_Form1,BorderLayout.CENTER);
                  departments_Form1.fillForm(active);
@@ -39,12 +40,16 @@ public class Action_Panel extends javax.swing.JPanel {
                  employee_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("fournisseur")){
                  container.add(fournisseur_form1,BorderLayout.CENTER);
+                 fournisseur_form1.fillForm(active);
              }else if (table.equalsIgnoreCase("sortie")){
                  container.add(sortie_Form1,BorderLayout.CENTER);
+                 sortie_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("livraison")){
                  container.add(livraison_Form1,BorderLayout.CENTER);
+                 livraison_Form1.fillForm(active);
              }else if (table.equalsIgnoreCase("categorie")){
                 container.add(cat_Form1,BorderLayout.CENTER);
+                cat_Form1.fillForm(active);
              }else {
                  JOptionPane.showMessageDialog(null, "error dans le type de table");
              }

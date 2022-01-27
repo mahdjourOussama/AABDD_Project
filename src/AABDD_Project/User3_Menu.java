@@ -114,7 +114,7 @@ public class User3_Menu extends javax.swing.JPanel {
     private void Commands_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Commands_buttonActionPerformed
         MainFrame.consultation_Panel1.table="command";
         MainFrame.consultation_Panel1.fillTable();
-        MainFrame.action=false;
+        MainFrame.action=true;
         MainFrame.check_prev();
     }//GEN-LAST:event_Commands_buttonActionPerformed
 

@@ -5,6 +5,8 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author mahdj
@@ -18,7 +20,12 @@ public class Sortie_Table extends javax.swing.JPanel {
         initComponents();
     }
     public void fillTable(boolean active){
-        
+        if (active){
+            active_stat="1";
+        }else {
+            active_stat="0";
+        }
+        Sql.fillsortieTable(Sortie_Table, active_stat);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,11 +47,11 @@ public class Sortie_Table extends javax.swing.JPanel {
 
             },
             new String [] {
-                "code", "date", "code emp", "empl name"
+                "code", "date", "employe"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -56,10 +63,14 @@ public class Sortie_Table extends javax.swing.JPanel {
             Sortie_Table.getColumnModel().getColumn(0).setResizable(false);
             Sortie_Table.getColumnModel().getColumn(1).setResizable(false);
             Sortie_Table.getColumnModel().getColumn(2).setResizable(false);
-            Sortie_Table.getColumnModel().getColumn(3).setResizable(false);
         }
 
         Detailed.setText("Detaile");
+        Detailed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetailedActionPerformed(evt);
+            }
+        });
 
         Detailed_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +115,14 @@ public class Sortie_Table extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void DetailedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailedActionPerformed
+        Methode.ClearTable(Detailed_table);
+        DefaultListModel l= Methode.getTableContent(Sortie_Table);
+        selected=l.getElementAt(0).toString();
+        Sql.fillline_SortieTable(Detailed_table,active_stat ,selected);
+    }//GEN-LAST:event_DetailedActionPerformed
+    public  String selected="", active_stat= "1";;
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Detailed;

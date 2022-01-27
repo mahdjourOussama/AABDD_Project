@@ -30,7 +30,8 @@ public  class Sql {
 //============================//START OF THE Methode//==========================
 public static int test_user_priv(String username,String password){
     ResultSet rs =null ;
-    String sql="SELECT * FROM  accounts where password= '"+password+"'";
+    String sql="SELECT * FROM  accounts where username='"+username+
+            "' and password= '"+password+"'";
     try {
             pst = conn.prepareStatement(sql);
             rs=pst.executeQuery();
@@ -45,7 +46,97 @@ public static int test_user_priv(String username,String password){
     
 }
 //============================//END OF THE Methode//============================
-
+//============================//START OF THE Methode//==========================
+public static DefaultListModel FillList(DefaultListModel model,String table,String Active,String selection){
+    ResultSet rs =null ;
+    model.removeAllElements();
+    String sql="SELECT * FROM  "+table+" where active= '"+Active+"'";
+    DefaultListModel ids= new DefaultListModel();
+    try {
+            pst = conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                model.addElement(rs.getString(selection));
+                ids.addElement(rs.getString(1));
+            }
+            
+            
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "fill list\n"+e.getMessage());
+            
+    }
+    return ids;
+}
+//============================//END OF THE Methode//============================   
+//============================//START OF THE Methode//==========================
+    public static void insertIntoLine_Affectation(String produit,String qte,String num_baf){
+    String sql="INSERT INTO concerner(num_baf, code_pro, Qte_aff )VALUES (?,?,?)";
+    try {
+             pst = conn.prepareStatement(sql);
+            pst.setString(1, num_baf);
+            pst.setString(2, produit);
+            pst.setString(3, qte);
+            pst.execute();
+            
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "insert line affectation \n"+e.getMessage());
+            
+    }
+}
+//============================//END OF THE Methode//============================ 
+//============================//START OF THE Methode//==========================
+    public static void insertIntoLine_Command(String produit,String qte,String num_bco){
+    String sql="INSERT INTO contenir  (num_bco, code_pro, Qte_cde )VALUES (?,?,?)";
+    try {
+             pst = conn.prepareStatement(sql);
+            pst.setString(1, num_bco);
+            pst.setString(2, produit);
+            pst.setString(3, qte);
+            pst.execute();
+            
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "insert line affectation \n"+e.getMessage());
+            
+    }
+}
+//============================//END OF THE Methode//============================ 
+//============================//START OF THE Methode//==========================
+    public static void insertIntoLine_Sortie(String produit,String qte,String num_bco){
+    String sql="INSERT INTO se_refere  (num_bso, code_pro, Qte_sortie )VALUES (?,?,?)";
+    try {
+             pst = conn.prepareStatement(sql);
+            pst.setString(1, num_bco);
+            pst.setString(2, produit);
+            pst.setString(3, qte);
+            pst.execute();
+            
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "insert line affectation \n"+e.getMessage());
+            
+    }
+}
+//============================//END OF THE Methode//============================ 
+    //============================//START OF THE Methode//==========================
+    public static void insertIntoLine_Livraison(String produit,String qte,String num_bco){
+    String sql="INSERT INTO renfermer  (num_bliv, code_pro, Qte_liv )VALUES (?,?,?)";
+    try {
+             pst = conn.prepareStatement(sql);
+            pst.setString(1, num_bco);
+            pst.setString(2, produit);
+            pst.setString(3, qte);
+            pst.execute();
+            
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "insert line affectation \n"+e.getMessage());
+            
+    }
+}
+//============================//END OF THE Methode//============================ 
 //============================//table Employe//=================================
 //============================//START OF THE Methode//==========================                       
     public static void InsertToProduit(String code_pro, String Designation,
@@ -77,9 +168,9 @@ public static int test_user_priv(String username,String password){
             String Qte_stock ,String Date_stock,String seuil,String type,String num_cat) {
 
         String sql = "UPDATE Produit set  Designation ='"+Designation
-                + "' ,Qte_stock="+Qte_stock+
-                ", seuil ="+seuil+",type_pro ="+type+",num_cat ="+num_cat+
-                " where code_pro ="+code_pro;
+                + "' ,Qte_stock="+Qte_stock+", date_stock =TO_DATE('"+Date_stock+ "', 'dd/MM/yyyy '),"
+                + " seuil ='"+seuil+"',type_pro ='"+type+"',num_cat ='"+num_cat+
+                " 'where code_pro ="+code_pro;
         try {
             pst = conn.prepareStatement(sql);
             pst.execute(sql);
@@ -222,7 +313,7 @@ public static int test_user_priv(String username,String password){
          String prenom_emp,String grade_emp,String function,String cod_dep) {
 
         String sql = "INSERT INTO Employe(code_emp, nom_emp,"
-                + " prenom_emp, grade_emp, fonction, cod_dep) "
+                + " prenom_emp, grade_emp, fonction, code_dep) "
                 + "VALUES (?,?,?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -365,9 +456,9 @@ public static int test_user_priv(String username,String password){
      public static void InsertToFournisseur(
             String code_fournisseur ,String nom_fournisseur,String num_compte,String num_tel) {
 
-        String sql = "INSERT INTO Fournisseur(code_fournissuer, nom_fournissuer,"
-                + " num_compte, num_tel) "
-                + "VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO Fournisseur(CODE_FOURNISSEUR, NOM_FOURNISSEUR,"
+                + " NUM_COMPTE , NUM_TEL) "
+                + "VALUES (?,?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, code_fournisseur);
@@ -430,12 +521,12 @@ public static int test_user_priv(String username,String password){
      * Selecting a column from¨Product Without Condition
      *
      * @param Active this is active stats true or false
-     * @param selection the Column you want to select
+     * @param id the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> SelectFournisseur(String Active, String selection) {
+    public static DefaultListModel<String> SelectFournisseur(String Active, String id) {
             ResultSet rs = null;
-        String sql = "select * from Fournisseur where active ='"+Active+"'" ;
+        String sql = "select * from Fournisseur where active ='"+Active+"' and code_fournisseur="+id ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -444,14 +535,16 @@ public static int test_user_priv(String username,String password){
             DefaultListModel<String> result = new DefaultListModel();
 
             while (rs.next()) {
-                result.addElement(rs.getString(selection));
-
+                result.addElement(id);
+                result.addElement(rs.getString(2));
+                result.addElement(rs.getString(3));
+                result.addElement(rs.getString(4));
             }
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from Fournisseur\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from Fournisseur\t with  " + id + "\n" + e.getMessage());
             return null;
         }
     }
@@ -628,7 +721,7 @@ public static int test_user_priv(String username,String password){
   }
 //============================//END OF THE Methode//============================
 //============================//START OF THE Methode//==========================
-      public static void fillline_livraisonTable(JTable table,String active){
+      public static void fillline_livraisonTable(JTable table,String active,String id){
         ResultSet rs = null;
         DefaultTableModel tab =(DefaultTableModel) table.getModel();
 
@@ -636,17 +729,16 @@ public static int test_user_priv(String username,String password){
             tab.removeRow(0);
         }
 
-      String sql ="select * from line_livraison where  `active`= '"+active+"'";
+      String sql ="select * from line_livraison where  active= '"+active+"' and NUM_COMMANDE= "+id;
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
       while(rs.next()){
-         String Num_bsortir =rs.getString("Num_cammande"),
-                Qte=rs.getString("Qte"),
-                product_name=rs.getString("product_name");
+         String Qte=rs.getString(2),
+                product_name=rs.getString(3);
 
 
-            tab.addRow(new Object[]{Num_bsortir,Qte,product_name});    
+            tab.addRow(new Object[]{Qte,product_name});    
       }
       } catch (Exception e) {
           e.printStackTrace();
@@ -654,7 +746,7 @@ public static int test_user_priv(String username,String password){
   }
 //============================//END OF THE Methode//============================   
 //============================//START OF THE Methode//==========================
-       public static void fillline_affectationTable(JTable table,String active){
+       public static void fillline_affectationTable(JTable table,String active,String id){
         ResultSet rs = null;
         DefaultTableModel tab =(DefaultTableModel) table.getModel();
 
@@ -662,17 +754,66 @@ public static int test_user_priv(String username,String password){
             tab.removeRow(0);
         }
 
-      String sql ="select * from line_affectation where  active= '"+active+"'";
+      String sql ="select * from line_affectation where  active= '"+active+"' and NUM_COMMANDE ="+id;
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
       while(rs.next()){
-         String Num_cammande =rs.getString("Num_cammande"),
-                Qte=rs.getString("qte"),
-                product_name=rs.getString("product_name");
+         String Qte=rs.getString(2),
+                product_name=rs.getString(3);
 
 
-            tab.addRow(new Object[]{Num_cammande,Qte,product_name});    
+            tab.addRow(new Object[]{product_name,Qte});    
+      }
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+//============================//END OF THE Methode//============================
+//============================//START OF THE Methode//==========================
+       public static void fillline_commandeTable(JTable table,String active,String id){
+        ResultSet rs = null;
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+
+      String sql ="select * from line_command where  active= '"+active+"' and NUM_COMMANDE ="+id;
+     try {
+        pst = conn.prepareStatement(sql);
+        rs=pst.executeQuery(sql); 
+      while(rs.next()){
+         String Qte=rs.getString(2),
+                product_name=rs.getString(3);
+
+
+            tab.addRow(new Object[]{product_name,Qte});    
+      }
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
+//============================//END OF THE Methode//============================
+//============================//START OF THE Methode//==========================
+    public static void fillline_SortieTable(JTable table,String active,String id){
+        ResultSet rs = null;
+        DefaultTableModel tab =(DefaultTableModel) table.getModel();
+
+        while(table.getRowCount()>0){
+            tab.removeRow(0);
+        }
+
+      String sql ="select * from line_sortie where  active= '"+active+"' and NUM_COMMANDE ="+id;
+     try {
+        pst = conn.prepareStatement(sql);
+        rs=pst.executeQuery(sql); 
+      while(rs.next()){
+         String Qte=rs.getString(2),
+                product_name=rs.getString(3);
+
+
+            tab.addRow(new Object[]{product_name,Qte});    
       }
       } catch (Exception e) {
           e.printStackTrace();
@@ -719,7 +860,7 @@ public static int test_user_priv(String username,String password){
      public static void InsertTolivraison(
             String code ,String date,String qte) {
 
-        String sql = "INSERT INTO livraison(num_bliv, date_liv,quantite) "
+        String sql = "INSERT INTO bon_livraison(num_bliv, date_liv,QUANTITÉ) "
                 + "VALUES (?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -779,12 +920,12 @@ public static int test_user_priv(String username,String password){
      * Selecting a column from¨Product Without Condition
      *
      * @param Active this is active stats true or false
-     * @param selection the Column you want to select
+     * @param ID the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> Selectlivraison(String Active, String selection) {
+    public static DefaultListModel<String> Selectlivraison(String Active, String ID) {
             ResultSet rs = null;
-        String sql = "select * from livraison where active ='"+Active+"'" ;
+        String sql = "select * from bon_livraison where active ='"+Active+"' and num_bliv ="+ID ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -793,14 +934,14 @@ public static int test_user_priv(String username,String password){
             DefaultListModel<String> result = new DefaultListModel();
 
             while (rs.next()) {
-                result.addElement(rs.getString(selection));
-
+                result.addElement(rs.getString(2));
+                result.addElement(rs.getString(3));
             }
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from livraison\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from livraison\t with  " + ID + "\n" + e.getMessage());
             return null;
         }
     }
@@ -897,12 +1038,12 @@ public static int test_user_priv(String username,String password){
      * Selecting a column from¨Product Without Condition
      *
      * @param Active this is active stats true or false
-     * @param selection the Column you want to select
+     * @param id the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> Selectcat(String Active, String selection) {
+    public static DefaultListModel<String> Selectcat(String Active, String id) {
             ResultSet rs = null;
-        String sql = "select * from cat where active ='"+Active+"'" ;
+        String sql = "select * from categorie where active ='"+Active+"' and num_cat="+id ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -911,14 +1052,14 @@ public static int test_user_priv(String username,String password){
             DefaultListModel<String> result = new DefaultListModel();
 
             while (rs.next()) {
-                result.addElement(rs.getString(selection));
-
+                result.addElement(rs.getString(1));
+                result.addElement(rs.getString(2));
             }
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from cat\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from cat\t with  " + id + "\n" + e.getMessage());
             return null;
         }
     }
@@ -1032,12 +1173,12 @@ public static int test_user_priv(String username,String password){
      * Selecting a column from¨Product Without Condition
      *
      * @param Active this is active stats true or false
-     * @param selection the Column you want to select
+     * @param id the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> Selectcommande(String Active, String selection) {
+    public static DefaultListModel<String> Selectcommande(String Active, String id) {
             ResultSet rs = null;
-        String sql = "select * from commande where active ='"+Active+"'" ;
+        String sql = "select * from commande where active ='"+Active+"' and num_bco ="+id ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -1046,14 +1187,14 @@ public static int test_user_priv(String username,String password){
             DefaultListModel<String> result = new DefaultListModel();
 
             while (rs.next()) {
-                result.addElement(rs.getString(selection));
-
+                result.addElement(rs.getString(2));
+                result.addElement(rs.getString(3));
             }
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from commande\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from commande\t with  " + id + "\n" + e.getMessage());
             return null;
         }
     }
@@ -1065,7 +1206,7 @@ public static int test_user_priv(String username,String password){
      * @param table The JTable u want to fill
      * @param active 
      */
-  public static void fillcammandeTable(JTable table,String active){
+  public static void fillCommandeTable(JTable table,String active){
         ResultSet rs = null;
         DefaultTableModel tab =(DefaultTableModel) table.getModel();
 
@@ -1106,7 +1247,7 @@ public static int test_user_priv(String username,String password){
      public static void InsertToAffectation(
             String code ,String date,String code_emp) {
 
-        String sql = "INSERT INTO bon_affectation(num_baff, date_aff,code_emp) "
+        String sql = "INSERT INTO bon_affectation(num_baf, date_aff,code_emp) "
                 + "VALUES (?,?,?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -1130,7 +1271,7 @@ public static int test_user_priv(String username,String password){
      * @param code
      */
     public static void DeleteFromAffectation(String code) {
-        String sql = "UPDATE bon_affectation SET Active= 0 WHERE   num_baff ='" + code + "'";
+        String sql = "UPDATE bon_affectation SET Active= 0 WHERE   num_baf ='" + code + "'";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -1149,7 +1290,7 @@ public static int test_user_priv(String username,String password){
      * @param code
      */
     public static void RestoreFromAffectation(String code) {
-        String sql = "UPDATE bon_affectation set Active= 1 WHERE num_baff ='" + code + "'";
+        String sql = "UPDATE bon_affectation set Active= 1 WHERE num_baf ='" + code + "'";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -1166,12 +1307,12 @@ public static int test_user_priv(String username,String password){
      * Selecting a column from¨Product Without Condition
      *
      * @param Active this is active stats true or false
-     * @param selection the Column you want to select
+     * @param id the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> SelectAffectation(String Active, String selection) {
+    public static DefaultListModel<String> SelectAffectation(String Active, String id) {
             ResultSet rs = null;
-        String sql = "select * from bon_affectation where active ='"+Active+"'" ;
+        String sql = "select * from bon_affectation where active ='"+Active+"' and num_baf ="+id ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -1180,14 +1321,14 @@ public static int test_user_priv(String username,String password){
             DefaultListModel<String> result = new DefaultListModel();
 
             while (rs.next()) {
-                result.addElement(rs.getString(selection));
-
+                result.addElement(rs.getString(2));
+                result.addElement(rs.getString(3));
             }
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from sortie\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from sortie\t with  " + id + "\n" + e.getMessage());
             return null;
         }
     }
@@ -1207,7 +1348,7 @@ public static int test_user_priv(String username,String password){
             tab.removeRow(0);
         }
 
-      String sql ="select * from bon_affectation where  active= '"+active+"'";
+      String sql ="select * from full_affectation where  active= '"+active+"'";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
@@ -1304,12 +1445,12 @@ public static int test_user_priv(String username,String password){
      * Selecting a column from¨Product Without Condition
      *
      * @param Active this is active stats true or false
-     * @param selection the Column you want to select
+     * @param id the Column you want to select
      * @return Selection Result in DefaultListModel
      */
-    public static DefaultListModel<String> Selectsortie(String Active, String selection) {
+    public static DefaultListModel<String> Selectsortie(String Active, String id) {
             ResultSet rs = null;
-        String sql = "select * from bon_sortie where active ='"+Active+"'" ;
+        String sql = "select * from bon_sortie where active ='"+Active+"' and num_bso= "+id ;
 
         try {
             pst = conn.prepareStatement(sql);
@@ -1318,14 +1459,14 @@ public static int test_user_priv(String username,String password){
             DefaultListModel<String> result = new DefaultListModel();
 
             while (rs.next()) {
-                result.addElement(rs.getString(selection));
-
+                result.addElement(rs.getString(2));
+                result.addElement(rs.getString(3));
             }
             return result;
 
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "selectString all from sortie\t with  " + selection + "\n" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "selectString all from sortie\t with  " + id + "\n" + e.getMessage());
             return null;
         }
     }
@@ -1345,7 +1486,7 @@ public static int test_user_priv(String username,String password){
             tab.removeRow(0);
         }
 
-      String sql ="select * from bon_sortie where  active= '"+active+"'";
+      String sql ="select * from full_sortie where  active= '"+active+"'";
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
@@ -1394,13 +1535,13 @@ public static DefaultListModel fillComboBox(JComboBox combobox,String table,Stri
      return IDlist;
   }
 //============================//END OF THE Methode//============================
-    //============================//START OF THE Methode//==========================                       
+//============================//START OF THE Methode//==========================                       
     public static void UpdateFournisseur(String code_fournisseur, String first_name,
             String num_compte ,String num_tele) {
 
-        String sql = "UPDATE Fournisseur set  first_name ='"+first_name
+        String sql = "UPDATE Fournisseur set  nom_fournisseur ='"+first_name
                 + "' ,num_compte="+num_compte+
-                ", num_tele ="+num_tele+" where code_fournisseur ="+code_fournisseur;
+                ", num_tel ="+num_tele+" where code_fournisseur ="+code_fournisseur;
         try {
             pst = conn.prepareStatement(sql);
             pst.execute(sql);
@@ -1408,6 +1549,21 @@ public static DefaultListModel fillComboBox(JComboBox combobox,String table,Stri
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Fournisseur update\n" + e.getMessage());
+        }
+    }
+//============================//END OF THE Methode//============================
+//============================//START OF THE Methode//==========================                       
+    public static void UpdateCat(String num_cat, String cat) {
+
+        String sql = "UPDATE categorie set  categorie ='"+cat
+                +"' where num_cat ="+num_cat;
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute(sql);
+            JOptionPane.showMessageDialog(null, " categorie updated\t");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "categorie update\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -1430,10 +1586,10 @@ public static DefaultListModel fillComboBox(JComboBox combobox,String table,Stri
     public static void UpdateEmployee(String code_emp, String nom_emp,
             String prenom_emp ,String grade_emp ,String function,String code_dep) {
 
-        String sql = "UPDATE Employee set  nom_emp ='"+nom_emp
+        String sql = "UPDATE Employe set  nom_emp ='"+nom_emp
                 + "' ,prenom_emp='"+prenom_emp+
                 "', grade_emp ='"+grade_emp+"' ,fonction='"+function+"',code_dep="+code_dep+
-                "where code_emp ="+code_emp;
+                " where code_emp ="+code_emp;
         try {
             pst = conn.prepareStatement(sql);
             pst.execute(sql);
@@ -1441,6 +1597,68 @@ public static DefaultListModel fillComboBox(JComboBox combobox,String table,Stri
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Employee update\n" + e.getMessage());
+        }
+    }
+//============================//END OF THE Methode//============================
+//============================//startOF THE Methode//============================
+    public static void Updateaffectation(String num_baf, String date_aff,
+            String code_emp) {
+
+        String sql = "UPDATE bon_affectation set  code_emp='"+code_emp 
+                + "' ,date_aff= TO_DATE('"+date_aff+ "', 'dd/MM/yyyy ') where num_baf ="+num_baf;
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute(sql);
+            JOptionPane.showMessageDialog(null, " affectation updated\t");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "affectation update\n" + e.getMessage());
+        }
+    }
+//============================//END OF THE Methode//============================
+    public static void Updatecammande(String num_bco, String date_com,String code_fournisseur) {
+
+        String sql = "UPDATE commande set code_fournisseur='"+code_fournisseur
+                + "' ,date_com=TO_DATE('"+date_com+ "', 'dd/MM/yyyy ') where num_bco ="+num_bco;
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute(sql);
+            JOptionPane.showMessageDialog(null, " cammande updated\t");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "cammande update\n" + e.getMessage());
+        }
+    }
+//============================//END OF THE Methode//============================
+    
+//============================//startOF THE Methode//============================
+    public static void Updatesortie(String num_bso, String date,String code_emp) {
+
+        String sql = "UPDATE bon_sortie set date_sor=TO_DATE('"+date+ "', 'dd/MM/yyyy ') ,code_emp="+code_emp
+                + " where num_bso ="+num_bso;
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute(sql);
+            JOptionPane.showMessageDialog(null, " sortie updated\t");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "sortie update\n" + e.getMessage());
+        }
+    }
+//============================//END OF THE Methode//============================
+//============================//startOF THE Methode//============================
+    public static void UpdateLivraison(String num_bliv,String date_liv,
+            String qte) {
+
+        String sql = "UPDATE bon_livraison set  QUANTITÉ='"+qte
+                + "' ,date_liv=TO_DATE('"+date_liv+ "', 'dd/MM/yyyy ') where num_bliv ="+num_bliv ;
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.execute(sql);
+            JOptionPane.showMessageDialog(null, " Livraison updated\t");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Livraison update\n" + e.getMessage());
         }
     }
 //============================//END OF THE Methode//============================
@@ -1454,6 +1672,7 @@ public static DefaultListModel fillComboBox(JComboBox combobox,String table,Stri
             e.printStackTrace();
         }
     }
+//============================//END OF THE Methode//============================
 //==============================================================================   
 //=============================//END OF THE Class//=============================
 //==============================================================================

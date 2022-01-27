@@ -5,6 +5,8 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author mahdj
@@ -17,9 +19,24 @@ public class Cat_Form extends javax.swing.JPanel {
     public Cat_Form() {
         initComponents();
     }
-    public void fillForm(String id){
-        NumTxt.setText(id);
-        
+    public void fillForm(String actif){
+        if(MainFrame.action_Panel1.edit){
+            String id=MainFrame.consultation_Panel1.Selected_ID();
+            DefaultListModel l = Sql.Selectcat(actif, id);
+            NumTxt.setText(id);
+            NumTxt.setEditable(false);
+            CategorieTxt.setText(l.getElementAt(1).toString());
+            Submit_button.setText("Update");
+        }else{
+            clear();
+        }
+    }
+    public void clear(){
+        NumTxt.setText("");
+            NumTxt.setEditable(true);
+            CategorieTxt.setText("");
+            Submit_button.setText("ADD");
+        MainFrame.action_Panel1.edit=false;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,8 +59,18 @@ public class Cat_Form extends javax.swing.JPanel {
         jLabel2.setText("Categorie");
 
         Clear_button.setText("Clear");
+        Clear_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Clear_buttonActionPerformed(evt);
+            }
+        });
 
         Submit_button.setText("ADD");
+        Submit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Submit_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -83,6 +110,23 @@ public class Cat_Form extends javax.swing.JPanel {
                     .addComponent(Submit_button)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Clear_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Clear_buttonActionPerformed
+        clear();
+    }//GEN-LAST:event_Clear_buttonActionPerformed
+
+    private void Submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Submit_buttonActionPerformed
+        String code =NumTxt.getText(),
+                nom=CategorieTxt.getText();
+            
+        if(MainFrame.action_Panel1.edit){
+            Sql.UpdateCat(code, nom);
+        }else {
+            Sql.InsertTocat(code, nom);
+        }
+        MainFrame.consultation_Panel1.fillTable();
+        Sql.commit();
+    }//GEN-LAST:event_Submit_buttonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

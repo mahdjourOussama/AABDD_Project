@@ -187,6 +187,14 @@ create materialized view full_employe refresh on commit as
     emp.grade_emp,emp.fonction, dep.intitule_dep,emp.active
     from departement dep , employe emp 
     where dep.code_dep = emp.code_dep ;
+create materialized view full_Sortie refresh on commit as
+    select sr.num_bso,sr.date_sor,emp.nom_emp ,sr.active
+    from bon_sortie sr , employe emp 
+    where sr.code_emp = emp.code_emp ;
+create materialized view full_affectation refresh on commit as
+    select sr.num_baf,sr.date_aff,emp.nom_emp ,sr.active
+    from bon_affectation sr , employe emp 
+    where sr.code_emp = emp.code_emp ; 
 /*--inserting test subject into database--*/
 insert into prevliage values (1,'user1','user1');
 insert into prevliage values (2,'user2','user2');
@@ -202,7 +210,4 @@ insert into accounts values(3,'k','k',3,1);
 insert into produit values(1,'ous',2,'12/may/2021',3,'oki',1);
 insert into fournisseur values (1,'oussama',11,21,1);
 commit;
-UPDATE Departement set  code_dep=SEQ1.nextval;
-SELECT * FROM  accounts where username='ous' and password= 'ous';
-select * from produit where  active= 1;
-select * from prevliage;
+UPDATE bon_affectation set  code_emp='1' ,date_aff=TO_DATE('11/Jan/2022', 'dd/MM/yyyy ') where num_baf =2;

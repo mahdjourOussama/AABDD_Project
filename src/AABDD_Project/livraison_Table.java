@@ -5,21 +5,28 @@
  */
 package AABDD_Project;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author mahdj
  */
 public class Livraison_Table extends javax.swing.JPanel {
-
+     public void fillTable(boolean active){
+        if (active){
+            active_stat="1";
+        }else {
+            active_stat="0";
+        }
+        Sql.filllivraisonTable(Laivraison_Table, active_stat);
+    }
     /**
      * Creates new form Departments_Panel
      */
     public Livraison_Table() {
         initComponents();
     }
-    public void fillTable(boolean active){
-        
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,11 +47,11 @@ public class Livraison_Table extends javax.swing.JPanel {
 
             },
             new String [] {
-                "code", "date", "code emp", "empl name"
+                "code", "date", "Qte"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -56,7 +63,6 @@ public class Livraison_Table extends javax.swing.JPanel {
             Laivraison_Table.getColumnModel().getColumn(0).setResizable(false);
             Laivraison_Table.getColumnModel().getColumn(1).setResizable(false);
             Laivraison_Table.getColumnModel().getColumn(2).setResizable(false);
-            Laivraison_Table.getColumnModel().getColumn(3).setResizable(false);
         }
 
         Detailed.setText("Detaile");
@@ -110,9 +116,13 @@ public class Livraison_Table extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DetailedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetailedActionPerformed
-        // TODO add your handling code here:
+        Methode.ClearTable(Detailed_table);
+        DefaultListModel l= Methode.getTableContent(Laivraison_Table);
+        selected=l.getElementAt(0).toString();
+        Sql.fillline_livraisonTable(Detailed_table,active_stat ,selected);
     }//GEN-LAST:event_DetailedActionPerformed
-
+    public  String selected="", active_stat= "1";;
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Detailed;

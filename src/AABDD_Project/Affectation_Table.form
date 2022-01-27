@@ -51,7 +51,7 @@
               <Table columnCount="3" rowCount="0">
                 <Column editable="false" title="code" type="java.lang.Object"/>
                 <Column editable="false" title="date" type="java.lang.Object"/>
-                <Column editable="false" title="empl name" type="java.lang.Object"/>
+                <Column editable="false" title="employe" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -87,6 +87,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Detaile"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DetailedActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
