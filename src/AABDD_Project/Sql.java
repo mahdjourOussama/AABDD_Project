@@ -68,7 +68,27 @@ public static DefaultListModel FillList(DefaultListModel model,String table,Stri
     }
     return ids;
 }
-//============================//END OF THE Methode//============================   
+//============================//END OF THE Methode//============================ 
+//============================//START OF THE Methode//==========================
+    public static void insertIntoAccount(String Id_user,String username,
+            String password,String Id_prev,String active){
+    String sql="INSERT INTO accounts (id_user, username, password,ID_PREV,ACTIVE )VALUES (?,?,?,?,?)";
+    try {
+             pst = conn.prepareStatement(sql);
+            pst.setString(1, Id_user);
+            pst.setString(2, username);
+            pst.setString(3, password);
+            pst.setString(4,Id_prev );
+            pst.setString(5, active);
+            pst.execute();
+            
+    } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "insert accounts \n"+e.getMessage());
+            
+    }
+}
+//============================//END OF THE Methode//============================ 
 //============================//START OF THE Methode//==========================
     public static void insertIntoLine_Affectation(String produit,String qte,String num_baf){
     String sql="INSERT INTO concerner(num_baf, code_pro, Qte_aff )VALUES (?,?,?)";
@@ -903,7 +923,7 @@ public static DefaultListModel FillList(DefaultListModel model,String table,Stri
      * @param code
      */
     public static void RestoreFromlivraison(String code) {
-        String sql = "UPDATE livraison set Active= 1 WHERE code ='" + code + "'";
+        String sql = "UPDATE bon_livraison set Active= 1 WHERE num_bliv ='" + code + "'";
         try {
             pst = conn.prepareStatement(sql);
             pst.execute();
@@ -969,6 +989,7 @@ public static DefaultListModel FillList(DefaultListModel model,String table,Stri
          String code=rs.getString(1),
                 date=rs.getString(2),
                code_emp=rs.getString(3);
+               //Methode.formatdate(date);
             tab.addRow(new Object[]{code,date,code_emp});    
       }
       } catch (Exception e) {
@@ -1518,7 +1539,7 @@ public static DefaultListModel fillComboBox(JComboBox combobox,String table,Stri
         DefaultComboBoxModel tab =(DefaultComboBoxModel) combobox.getModel();
         tab.removeAllElements();
 
-      String sql ="select * from "+table+" where active="+active;
+      String sql ="select * from "+table+" where active ="+active;
      try {
         pst = conn.prepareStatement(sql);
         rs=pst.executeQuery(sql); 
@@ -1571,7 +1592,7 @@ public static DefaultListModel fillComboBox(JComboBox combobox,String table,Stri
     public static void UpdateDepartments(String code_dep, String intitule,
             String chef_name ,String chef_prenom) {
 
-        String sql = "UPDATE Departement set intitule ='"+intitule+"', nom_chef='"+chef_name+
+        String sql = "UPDATE Departement set Intitule_dep ='"+intitule+"', nom_chef='"+chef_name+
                 "', prenom_chef ='"+chef_prenom+"' where code_dep ="+code_dep;
         try {
             pst = conn.prepareStatement(sql);

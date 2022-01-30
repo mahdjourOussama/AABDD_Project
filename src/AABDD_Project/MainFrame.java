@@ -34,6 +34,9 @@ public class MainFrame extends javax.swing.JFrame {
         action_Panel1.Consultation_Container.revalidate();
         consultation_Panel1.refresh();
     }
+    public static void resize(){
+        
+    }
     /**
      * Creates new form NewJFrame
      */
@@ -61,6 +64,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(300, 200));
 
+        Container.setBackground(new java.awt.Color(247, 251, 252));
         Container.setLayout(new java.awt.BorderLayout());
         Container.add(Log_in, java.awt.BorderLayout.CENTER);
 

@@ -38,6 +38,8 @@ public class Products_Table extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         Product_table = new javax.swing.JTable();
 
+        Product_table.setBackground(new java.awt.Color(244, 244, 242));
+        Product_table.setForeground(new java.awt.Color(73, 84, 100));
         Product_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -54,6 +56,11 @@ public class Products_Table extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        Product_table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Product_table.setGridColor(new java.awt.Color(73, 84, 100));
+        Product_table.setOpaque(false);
+        Product_table.setSelectionBackground(new java.awt.Color(73, 84, 100));
+        Product_table.setSelectionForeground(new java.awt.Color(244, 244, 242));
         jScrollPane3.setViewportView(Product_table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

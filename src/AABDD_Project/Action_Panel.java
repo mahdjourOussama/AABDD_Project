@@ -103,27 +103,61 @@ public class Action_Panel extends javax.swing.JPanel {
             .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
         );
 
+        setBackground(new java.awt.Color(244, 244, 242));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(187, 191, 202))); // NOI18N
+
+        ADD.setBackground(new java.awt.Color(73, 84, 100));
+        ADD.setForeground(new java.awt.Color(244, 244, 242));
         ADD.setText("ADD");
+        ADD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ADDMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ADDMouseExited(evt);
+            }
+        });
         ADD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ADDActionPerformed(evt);
             }
         });
 
+        Update.setBackground(new java.awt.Color(73, 84, 100));
+        Update.setForeground(new java.awt.Color(244, 244, 242));
         Update.setText("Update");
+        Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                UpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                UpdateMouseExited(evt);
+            }
+        });
         Update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UpdateActionPerformed(evt);
             }
         });
 
+        Delete.setBackground(new java.awt.Color(73, 84, 100));
+        Delete.setForeground(new java.awt.Color(244, 244, 242));
         Delete.setText("Delete");
+        Delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DeleteMouseExited(evt);
+            }
+        });
         Delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteActionPerformed(evt);
             }
         });
 
+        Restore.setBackground(new java.awt.Color(187, 191, 202));
         Restore.setText("Restore");
         Restore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +197,7 @@ public class Action_Panel extends javax.swing.JPanel {
                 .addComponent(Update, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addComponent(Deleted_Checkbox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Restore, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,6 +229,17 @@ public class Action_Panel extends javax.swing.JPanel {
         active=!Deleted_Checkbox.isSelected();
         MainFrame.consultation_Panel1.active=active;
         MainFrame.consultation_Panel1.fillTable();
+        if(!active){
+            Delete.setBackground(new java.awt.Color(232, 232, 232));
+        Delete.setForeground(new java.awt.Color(73, 84, 100));
+        Restore.setBackground(new java.awt.Color(73, 84, 100));
+        Restore.setForeground(new java.awt.Color(244, 244, 242));
+        }else{
+            Delete.setBackground(new java.awt.Color(73, 84, 100));
+        Delete.setForeground(new java.awt.Color(244, 244, 242));
+        Restore.setBackground(new java.awt.Color(232, 232, 232));
+        Restore.setForeground(new java.awt.Color(73, 84, 100));
+        }
         
     }//GEN-LAST:event_Deleted_CheckboxActionPerformed
 
@@ -253,6 +298,36 @@ public class Action_Panel extends javax.swing.JPanel {
         MainFrame.consultation_Panel1.fillTable();
         Sql.commit();
     }//GEN-LAST:event_RestoreActionPerformed
+
+    private void ADDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDMouseEntered
+        ADD.setBackground(new java.awt.Color(187, 191, 202));
+        ADD.setForeground(new java.awt.Color(73, 84, 100));
+    }//GEN-LAST:event_ADDMouseEntered
+
+    private void ADDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ADDMouseExited
+        ADD.setBackground(new java.awt.Color(73, 84, 100));
+        ADD.setForeground(new java.awt.Color(244, 244, 242));
+    }//GEN-LAST:event_ADDMouseExited
+
+    private void UpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateMouseEntered
+        Update.setBackground(new java.awt.Color(187, 191, 202));
+        Update.setForeground(new java.awt.Color(73, 84, 100));
+    }//GEN-LAST:event_UpdateMouseEntered
+
+    private void UpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UpdateMouseExited
+        Update.setBackground(new java.awt.Color(73, 84, 100));
+        Update.setForeground(new java.awt.Color(244, 244, 242));
+    }//GEN-LAST:event_UpdateMouseExited
+
+    private void DeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMouseEntered
+        Delete.setBackground(new java.awt.Color(187, 191, 202));
+        Delete.setForeground(new java.awt.Color(73, 84, 100));
+    }//GEN-LAST:event_DeleteMouseEntered
+
+    private void DeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteMouseExited
+        Delete.setBackground(new java.awt.Color(73, 84, 100));
+        Delete.setForeground(new java.awt.Color(244, 244, 242));
+    }//GEN-LAST:event_DeleteMouseExited
     public static String table ="";
     public static boolean active=true,edit=false;
     // Variables declaration - do not modify//GEN-BEGIN:variables

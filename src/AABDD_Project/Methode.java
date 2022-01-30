@@ -74,20 +74,15 @@ public class Methode {
 //============================//END OF THE Methode//============================
 
 //============================//START OF THE Methode//==========================
-public static DefaultListModel addToLine(JTable table){
-                 DefaultTableModel model =(DefaultTableModel) table.getModel();
-            int selected =table.getSelectedRow(),colomn=table.getColumnCount();
-            DefaultListModel selectedValues=new DefaultListModel();
-            if (selected>-1) {
-                for (int i = 0; i < colomn; i++) {
-                    selectedValues.addElement(model.getValueAt(selected, i).toString());
-                }
-                return selectedValues;  
-            }else{
-             JOptionPane.showMessageDialog(null, "Please Select Item");
-             return selectedValues;
-            }
-                  
+public static void formatdate(String date_string){
+    
+        SimpleDateFormat dt = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+        try {
+            System.out.println(dt.parse(date_string));
+            dt.applyPattern("dd/MMM/yyyy");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
     }
 //============================//END OF THE Methode//============================
 

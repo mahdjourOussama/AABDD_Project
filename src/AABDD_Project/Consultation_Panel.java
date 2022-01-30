@@ -114,15 +114,29 @@ public class Consultation_Panel extends javax.swing.JPanel {
         Table_Container = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(244, 244, 242));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(118, 159, 205), 1, true));
+
+        Searchfield.setBackground(new java.awt.Color(232, 232, 232));
         Searchfield.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 SearchfieldKeyReleased(evt);
             }
         });
 
+        Table_Container.setBackground(new java.awt.Color(244, 244, 242));
         Table_Container.setLayout(new java.awt.BorderLayout());
 
+        jButton1.setBackground(new java.awt.Color(187, 191, 202));
         jButton1.setText("Refresh");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -135,7 +149,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Table_Container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Searchfield, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                .addComponent(Searchfield, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1))
         );
@@ -146,7 +160,7 @@ public class Consultation_Panel extends javax.swing.JPanel {
                     .addComponent(Searchfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Table_Container, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                .addComponent(Table_Container, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,6 +193,14 @@ public class Consultation_Panel extends javax.swing.JPanel {
         }
         refresh();
     }//GEN-LAST:event_SearchfieldKeyReleased
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jButton1.setBackground(new java.awt.Color(232, 232, 232));
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jButton1.setBackground(new java.awt.Color(187, 191, 202));
+    }//GEN-LAST:event_jButton1MouseExited
     public static  String table="";
     public static boolean active=true;
     // Variables declaration - do not modify//GEN-BEGIN:variables

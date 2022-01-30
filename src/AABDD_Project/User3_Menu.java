@@ -35,9 +35,13 @@ public class User3_Menu extends javax.swing.JPanel {
         department_button = new javax.swing.JButton();
         livraison_button = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(247, 251, 252));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Supply Manager", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(118, 159, 205))); // NOI18N
+
         UsernameLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         UsernameLabel2.setText("User 3");
 
+        Commands_button.setBackground(new java.awt.Color(185, 215, 234));
         Commands_button.setText("Commands");
         Commands_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +49,7 @@ public class User3_Menu extends javax.swing.JPanel {
             }
         });
 
+        Employe_button.setBackground(new java.awt.Color(185, 215, 234));
         Employe_button.setText("Employe");
         Employe_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +57,7 @@ public class User3_Menu extends javax.swing.JPanel {
             }
         });
 
+        Log_out_button2.setBackground(new java.awt.Color(214, 230, 242));
         Log_out_button2.setText("Log Out");
         Log_out_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +65,7 @@ public class User3_Menu extends javax.swing.JPanel {
             }
         });
 
+        fourniseur_button.setBackground(new java.awt.Color(185, 215, 234));
         fourniseur_button.setText("Fournisseur");
         fourniseur_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +73,7 @@ public class User3_Menu extends javax.swing.JPanel {
             }
         });
 
+        department_button.setBackground(new java.awt.Color(185, 215, 234));
         department_button.setText("department");
         department_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +81,7 @@ public class User3_Menu extends javax.swing.JPanel {
             }
         });
 
+        livraison_button.setBackground(new java.awt.Color(185, 215, 234));
         livraison_button.setText("livraison");
         livraison_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +94,7 @@ public class User3_Menu extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(UsernameLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Commands_button, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+            .addComponent(Commands_button, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
             .addComponent(Employe_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Log_out_button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(fourniseur_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -106,7 +115,7 @@ public class User3_Menu extends javax.swing.JPanel {
                 .addComponent(department_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(livraison_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(Log_out_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -159,7 +168,7 @@ public class User3_Menu extends javax.swing.JPanel {
     private javax.swing.JButton Commands_button;
     private javax.swing.JButton Employe_button;
     private javax.swing.JButton Log_out_button2;
-    private javax.swing.JLabel UsernameLabel2;
+    public static javax.swing.JLabel UsernameLabel2;
     private javax.swing.JButton department_button;
     private javax.swing.JButton fourniseur_button;
     private javax.swing.JButton livraison_button;

@@ -35,9 +35,13 @@ public class User2_Menu extends javax.swing.JPanel {
         affectation_button = new javax.swing.JButton();
         produit_button = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(247, 251, 252));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HR Manager", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(118, 159, 205))); // NOI18N
+
         UsernameLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         UsernameLabel2.setText("User 2");
 
+        Department_button.setBackground(new java.awt.Color(185, 215, 234));
         Department_button.setText("Department");
         Department_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +49,7 @@ public class User2_Menu extends javax.swing.JPanel {
             }
         });
 
+        Employe_button.setBackground(new java.awt.Color(185, 215, 234));
         Employe_button.setText("Employe");
         Employe_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +57,7 @@ public class User2_Menu extends javax.swing.JPanel {
             }
         });
 
+        Log_out_button2.setBackground(new java.awt.Color(214, 230, 242));
         Log_out_button2.setText("Log Out");
         Log_out_button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +65,7 @@ public class User2_Menu extends javax.swing.JPanel {
             }
         });
 
+        sortie_button.setBackground(new java.awt.Color(185, 215, 234));
         sortie_button.setText("sortie");
         sortie_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +73,7 @@ public class User2_Menu extends javax.swing.JPanel {
             }
         });
 
+        affectation_button.setBackground(new java.awt.Color(185, 215, 234));
         affectation_button.setText("affectation");
         affectation_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +81,7 @@ public class User2_Menu extends javax.swing.JPanel {
             }
         });
 
+        produit_button.setBackground(new java.awt.Color(185, 215, 234));
         produit_button.setText("Produit");
         produit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +94,7 @@ public class User2_Menu extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(UsernameLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Department_button, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+            .addComponent(Department_button, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
             .addComponent(Employe_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Log_out_button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(affectation_button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -106,7 +115,7 @@ public class User2_Menu extends javax.swing.JPanel {
                 .addComponent(sortie_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(produit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(Log_out_button2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -159,7 +168,7 @@ public class User2_Menu extends javax.swing.JPanel {
     private javax.swing.JButton Department_button;
     private javax.swing.JButton Employe_button;
     private javax.swing.JButton Log_out_button2;
-    private javax.swing.JLabel UsernameLabel2;
+    public static javax.swing.JLabel UsernameLabel2;
     private javax.swing.JButton affectation_button;
     private javax.swing.JButton produit_button;
     private javax.swing.JButton sortie_button;
